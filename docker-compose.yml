@@ -1,0 +1,53 @@
+services:
+    php:
+        container_name: php
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 8000:8000
+        volumes:
+            - .:/var/www/html:cached
+        depends_on:
+            - db
+        restart: always
+        networks:
+            - kanboard_network
+
+    db:
+        image: mariadb:latest
+        container_name: mariadb
+        ports:
+            - 3306:3306
+        volumes:
+            - .docker/db/data:/var/lib/mysql
+            - .docker/logs:/var/log/mysql
+            - .docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+            - .docker/db/sql:/docker-entrypoint-initdb.d
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: breaking_task
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+        restart: always
+        networks:
+            - kanboard_network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+        volumes:
+            - .docker/phpmyadmin/sessions:/sessions
+        depends_on:
+            - db
+        restart: always
+        networks:
+            - kanboard_network
+
+networks:
+    kanboard_network:

@@ -16,7 +16,7 @@
 ![TailwindCSS](https://img.shields.io/badge/-TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-## Installatioon
+## Installation
 
 ---
 
@@ -30,7 +30,26 @@
 ---
 
 ```bash
+git clone https://github.com/tomdepussay/breaking_task.git
+cd breaking_task
+```
+
+# Copie du .env
+```bash
+cp .env.example .env
+```
+
+# Build le projet
+```bash
 docker compose up --build -d
 ```
 
+# Génération de la clé d’application
+```bash
+docker-compose exec php php artisan key:generate
+```
 
+# Lancement des migrations
+```bash
+docker-compose exec php php artisan migrate --seed
+```

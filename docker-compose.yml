@@ -8,6 +8,7 @@ services:
             - 8000:8000
         volumes:
             - .:/var/www/html:cached
+            - vendor:/var/www/html/vendor
         depends_on:
             - db
         restart: always
@@ -51,3 +52,6 @@ services:
 
 networks:
     kanboard_network:
+
+volumes:
+    vendor:

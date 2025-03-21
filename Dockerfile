@@ -30,7 +30,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Optimiser l'installation Composer
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --optimize-autoloader
 
 # Installer les dépendances front-end
 COPY package.json package-lock.json ./

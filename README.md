@@ -44,6 +44,15 @@ cp .env.example .env
 docker compose up --build -d
 ```
 
+### Installation de NPM
+```bash
+npm install
+```
+### Installation de Composer
+```bash
+composer install
+```
+
 ### Génération de la clé d’application
 ```bash
 docker-compose exec php php artisan key:generate

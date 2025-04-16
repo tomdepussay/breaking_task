@@ -21,5 +21,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-/.docker
 .docker/db/data/
+.docker/db/logs/
+.docker/phpmyadmin/sessions/
+!.docker/db/my.cnf

@@ -30,7 +30,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Optimiser l'installation Composer
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --optimize-autoloader
 
 # Installer les dépendances front-end
 COPY package.json package-lock.json ./
@@ -40,7 +40,7 @@ RUN npm install && npm run build
 RUN chmod -R 777 storage bootstrap/cache
 
 # Exposer le port Laravel
-EXPOSE 8000
+EXPOSE 80
 
 # Lancer le serveur Laravel
-CMD php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan serve --host=0.0.0.0 --port=80

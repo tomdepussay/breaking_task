@@ -5,9 +5,10 @@ services:
             context: .
             dockerfile: Dockerfile
         ports:
-            - 8000:8000
+            - 80:80
         volumes:
-            - .:/var/www/html:cached
+            - .:/var/www/html
+            - vendor:/var/www/html/vendor
         depends_on:
             - db
         restart: always
@@ -19,11 +20,6 @@ services:
         container_name: mariadb
         ports:
             - 3306:3306
-        volumes:
-            - .docker/db/data:/var/lib/mysql
-            - .docker/logs:/var/log/mysql
-            - .docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
-            - .docker/db/sql:/docker-entrypoint-initdb.d
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: breaking_task
@@ -41,8 +37,6 @@ services:
             PMA_HOST: db
             PMA_PORT: 3306
             PMA_ARBITRARY: 1
-        volumes:
-            - .docker/phpmyadmin/sessions:/sessions
         depends_on:
             - db
         restart: always
@@ -51,3 +45,6 @@ services:
 
 networks:
     kanboard_network:
+
+volumes:
+    vendor:

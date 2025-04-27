@@ -10,11 +10,13 @@ services:
             - .:/var/www/html
             - vendor:/var/www/html/vendor
             - node_modules:/var/www/html/node_modules
+            - public_build:/var/www/html/public/build
         depends_on:
             - db
         restart: always
         networks:
             - kanboard_network
+        command: ["/bin/sh", "entrypoint.sh", "${DB_HOST}", "${DB_PORT}"]
 
     db:
         image: mariadb:latest
@@ -50,3 +52,4 @@ networks:
 volumes:
     vendor:
     node_modules:
+    public_build:

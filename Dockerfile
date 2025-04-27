@@ -2,6 +2,7 @@ FROM php:8.3-fpm
 
 # Installer les dépendances système
 RUN apt-get update && apt-get install -y \
+    netcat-openbsd \
     libfreetype-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
@@ -41,6 +42,3 @@ RUN chmod -R 777 storage bootstrap/cache
 
 # Exposer le port Laravel
 EXPOSE 80
-
-# Lancer le serveur Laravel
-CMD php artisan serve --host=0.0.0.0 --port=80

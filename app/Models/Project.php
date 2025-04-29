@@ -1,23 +1,38 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    /** @use HasFactory<\Database\Factories\ProjectFactory> */
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'creator_id'];
+    protected $fillable = [
+        'name',
+        'owner_id',
+    ];
 
-    public function creator()
+    public function owner()
     {
-        return $this->belongsTo(User::class, 'creator_id');
+        return $this->belongsTo(User::class, 'owner_id');
     }
 
-    public function members()
+    public function users()
     {
-        return $this->belongsToMany(User::class, 'project_user');
+        return $this->belongsToMany(User::class)
+            ->withPivot('is_owner')
+            ->withTimestamps();
+    }
+
+    public function columns()
+    {
+        return $this->hasMany(Column::class)->orderBy('order');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
     }
 }

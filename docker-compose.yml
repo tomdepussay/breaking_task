@@ -1,55 +1,55 @@
 services:
-    php:
-        container_name: php
+    laravel.test:
         build:
-            context: .
+            context: './vendor/laravel/sail/runtimes/8.4'
             dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: 'sail-8.4/app'
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
         ports:
-            - 80:80
+            - '${APP_PORT:-80}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
         volumes:
-            - .:/var/www/html
-            - vendor:/var/www/html/vendor
-            - node_modules:/var/www/html/node_modules
-            - public_build:/var/www/html/public/build
+            - '.:/var/www/html'
+        networks:
+            - sail
         depends_on:
-            - db
-        restart: always
-        networks:
-            - kanboard_network
-        command: ["/bin/sh", "entrypoint.sh", "${DB_HOST}", "${DB_PORT}"]
-
-    db:
-        image: mariadb:latest
-        container_name: mariadb
+            - mysql
+    mysql:
+        image: 'mysql/mysql-server:8.0'
         ports:
-            - 3306:3306
+            - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: breaking_task
-            MYSQL_USER: root
-            MYSQL_PASSWORD: root
-        restart: always
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - 'sail-mysql:/var/lib/mysql'
+            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
-            - kanboard_network
-
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        ports:
-            - 8080:80
-        environment:
-            PMA_HOST: db
-            PMA_PORT: 3306
-            PMA_ARBITRARY: 1
-        depends_on:
-            - db
-        restart: always
-        networks:
-            - kanboard_network
-
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
 networks:
-    kanboard_network:
-
+    sail:
+        driver: bridge
 volumes:
-    vendor:
-    node_modules:
-    public_build:
+    sail-mysql:
+        driver: local

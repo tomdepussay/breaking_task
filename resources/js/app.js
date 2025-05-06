@@ -1,7 +1,12 @@
 import './bootstrap';
 
-import Alpine from 'alpinejs';
+import '../css/app.css';
 
-window.Alpine = Alpine;
-
-Alpine.start();
+document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('reload-btn');
+    if (btn) {
+        btn.addEventListener('click', () => {
+            alert('Le hot reload fonctionne !');
+        });
+    }
+});

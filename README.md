@@ -10,6 +10,13 @@ git clone https://github.com/tomdepussay/breaking_task.git
 cd breaking_task
 ```
 
+Modifier le fichier vite.config.js, avec l'url de votre site (localhost ou IP de la VM) : 
+```javascript
+hmr: {
+    host: 'localhost',
+},
+```
+
 ```bash
 cp .env.example .env
 composer install

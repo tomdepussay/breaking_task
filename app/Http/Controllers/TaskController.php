@@ -18,9 +18,13 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $id_column = $request->column_id ?? null;
+
+        return view('task/create', [
+            'id_column' => $id_column
+        ]);
     }
 
     /**

@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function projects()
     {
-        return $this->belongToMany(Project::class)
+        return $this->belongsToMany(Project::class)
             ->withPivot('is_owner')
             ->withTimestamps();
     }

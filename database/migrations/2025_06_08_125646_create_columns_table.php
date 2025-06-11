@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('order');
-            $table->boolean('begin_column');
-            $table->boolean('end_column');
+            $table->boolean('begin_column')->default(false);
+            $table->boolean('end_column')->default(false);
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

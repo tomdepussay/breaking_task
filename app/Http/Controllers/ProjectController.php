@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Column;
+use App\Models\Priority;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,6 +84,24 @@ class ProjectController extends Controller
         $dropped->project_id = $project->id;
         $dropped->end_column = true;
         $dropped->save();
+
+        // Créer 3 prioritées par défaut
+        $priorities = ['Basse', 'Normal', 'Urgent'];
+        foreach ($priorities as $priorityName) {
+            $priority = new Priority();
+            $priority->name = $priorityName;
+            $priority->project_id = $project->id;
+            $priority->save();
+        }
+
+        // Créer 3 catégories par défaut
+        $categories = ['Résolution de bugs', 'Ajout de fonctionnalité', 'Design'];
+        foreach ($categories as $categoryName) {
+            $category = new Category();
+            $category->name = $categoryName;
+            $category->project_id = $project->id;
+            $category->save();
+        }
 
         return response()->json([
             'message' => 'Projet ajouté avec succès',

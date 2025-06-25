@@ -16,33 +16,155 @@
         </div>
     </x-slot>
 
-    <div class="py-8">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-x-auto">
-                <ul id="columns-container"
+    <div class="flex h-[calc(100vh-6rem)]">
+        <aside class="w-64 bg-gray-100 p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Vues</h3>
+            <nav class="flex flex-col gap-2">
+                <button onclick="showView('kanban')" class="text-left text-gray-800 hover:underline">📋 Kanban</button>
+                <button onclick="showView('list')" class="text-left text-gray-800 hover:underline">📑 Liste</button>
+                <button onclick="showView('calendar')" class="text-left text-gray-800 hover:underline">📆 Calendrier</button>
+            </nav>
+        </aside>
+
+        <div class="flex-1 overflow-y-auto bg-white max-w-8xl mx-auto sm:px-6 lg:px-8">
+            <div id="kanbanView">
+                <div class="min-w-[300px] max-w-[300px] bg-white rounded flex-shrink-0">
+                    <div class="p-3 flex items-center justify-start gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" />
+                        </svg>
+                        Ajouter une colonne
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <ul id="columns-container"
                     class="p-6 text-gray-900 flex flex-nowrap items-start justify-start gap-2 overflow-x-auto">
-                    @foreach($project->columns as $index => $column)
-                    @include('column.show')
-                    @endforeach
-                    <li class="min-w-[300px] max-w-[300px] bg-white rounded flex-shrink-0">
-                        <div class="p-3 flex items-center justify-start gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
-                                <path d="M5 12h14" />
-                                <path d="M12 5v14" />
-                            </svg>
-                            Ajouter une colonne
+                        @foreach($project->columns as $index => $column)
+                        @include('column.show')
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            <!-- VUE LISTE -->
+            <div id="listView" class="hidden px-6 py-4">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Vue Liste</h2>
+                <table class="min-w-full border border-gray-300">
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="border px-4 py-2 text-left">Titre</th>
+                            <th class="border px-4 py-2 text-left">Description</th>
+                            <th class="border px-4 py-2 text-left">Colonne</th>
+                            <th class="border px-4 py-2 text-left">Date limite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($project->columns as $column)
+                            @foreach($column->tasks as $task)
+                                <tr class="hover:bg-gray-100">
+                                    <td class="border px-4 py-2">{{ $task->name }}</td>
+                                    <td class="border px-4 py-2">{{ $task->description ?? '–' }}</td>
+                                    <td class="border px-4 py-2">{{ $column->name }}</td>
+                                    <td class="border px-4 py-2">{{ $task->due_date ?? '–' }}</td>
+                                </tr>
+                            @endforeach
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!-- VUE CALENDRIER -->
+            <div id="calendarView" class="hidden p-6">
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Vue Calendrier</h1>
+                 <div class="flex justify-between items-center mb-4">
+                    <div class="flex gap-2">
+                        <button onclick="changeCalendarView('day')" class="px-3 py-1 bg-gray-200 rounded">Jour</button>
+                        <button onclick="changeCalendarView('week')" class="px-3 py-1 bg-blue-600 text-white rounded">Semaine</button>
+                        <button onclick="changeCalendarView('month')" class="px-3 py-1 bg-gray-200 rounded">Mois</button>
+                    </div>
+                    <h2 class="text-xl font-semibold" id="calendarTitle">Semaine actuelle</h2>
+                </div>
+
+                 <!-- Grille du calendrier -->
+                <div class="grid grid-cols-8 border-t border-l text-sm text-gray-700">
+                    <!-- Ligne des jours -->
+                    <div class="border-b border-r h-12 flex items-center justify-center bg-gray-50">Heure</div>
+                    @php
+                        $days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+                    @endphp
+                    @foreach($days as $day)
+                        <div class="border-b border-r h-12 flex items-center justify-center bg-gray-50 font-medium">
+                            {{ $day }}
                         </div>
-                    </li>
-                </ul>
+                    @endforeach
+
+                    <!-- Lignes horaires -->
+                    @for ($hour = 8; $hour < 21; $hour++)
+                        <!-- Heure -->
+                        <div class="border-b border-r h-20 flex items-start justify-end pr-2 pt-1 text-xs bg-white">
+                            {{ str_pad($hour, 1, '0', STR_PAD_LEFT) }}:00
+                        </div>
+
+                        <!-- 7 colonnes pour chaque jour -->
+                        @for ($i = 0; $i < 7; $i++)
+                            <div class="border-b border-r h-20 relative bg-white">
+                                {{-- Les tâches apparaîtront ici --}}
+                            </div>
+                        @endfor
+                    @endfor
+                </div>
             </div>
         </div>
+
+        <script>
+            const tasks = [
+                @foreach($project->columns as $column)
+                    @foreach($column->tasks as $task)
+                        {
+                            name: @json($task->name),
+                            due_date: @json($task->due_date),
+                        },
+                    @endforeach
+                @endforeach
+            ];
+
+            document.addEventListener("DOMContentLoaded", () => {
+                tasks.forEach(task => {
+                    const date = new Date(task.due_date);
+                    const day = (date.getDay() + 6) % 7; // Lundi = 0, Dimanche = 6
+                    const hour = date.getHours();
+
+                    // Ne garder que les heures entre 8h et 20h
+                    if (hour < 8 || hour > 20) return;
+
+                    const cell = document.querySelector(`.task-cell[data-day="${day}"][data-hour="${hour}"]`);
+                    if (!cell) return;
+
+                    const taskBlock = document.createElement("div");
+                    taskBlock.className = "absolute top-1 left-1 right-1 bg-blue-500 text-white px-2 py-1 text-xs rounded shadow";
+                    taskBlock.innerText = task.name;
+
+                    cell.appendChild(taskBlock);
+                });
+            });
+
+        </script>
     </div>
 
     <div class="modal" id="addTask"></div>
 
     <script>
+    function showView(view) {
+        document.getElementById('kanbanView').classList.add('hidden');
+        document.getElementById('listView').classList.add('hidden');
+        document.getElementById('calendarView').classList.add('hidden');
+
+        document.getElementById(view + 'View').classList.remove('hidden');
+    }
     function addTask() {
         let form = document.getElementById('addTaskForm');
 
@@ -102,6 +224,11 @@
             .catch(error => {
                 console.log(error);
             })
+    }
+
+    function changeCalendarView(view) {
+        alert("Changement de vue : " + view);
+        // plus tard : activer d'autres vues
     }
     </script>
 

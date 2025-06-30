@@ -22,7 +22,7 @@ class Task extends Model
         'project_id',
         'column_id',
         'priority_id',
-        'category_id'
+        'category_id',
     ];
 
     public function project()

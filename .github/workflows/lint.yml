@@ -1,0 +1,63 @@
+name: Fix Code Style
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.4]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: json, dom, curl, libxml, mbstring
+          coverage: none
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            composer-
+
+      - name: Install PHP dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
+
+      - name: Install Laravel Pint
+        run: composer global require laravel/pint
+
+      - name: Run Laravel Pint
+        run: ~/.composer/vendor/bin/pint
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run ESLint and auto-fix
+        run: npx eslint resources/js --fix
+
+      - name: Commit linted files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(lint): auto-fix code style with Pint and ESLint"

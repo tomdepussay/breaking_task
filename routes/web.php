@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+
     Route::prefix('project')->name('project.')->group(function () {
         Route::get('/index', [ProjectController::class, 'index'])->name('index');
         Route::post('/store', [ProjectController::class, 'store'])->name('store');
@@ -26,7 +27,17 @@ Route::middleware('auth')->group(function () {
         Route::post('/update', [ProjectController::class, 'update'])->name('update');
         Route::get('/delete', [ProjectController::class, 'delete'])->name('delete');
         Route::post('/destroy', [ProjectController::class, 'destroy'])->name('destroy');
+
+        Route::prefix('users')->name('users.')->group(function (){
+            Route::get('/', [ProjectController::class, 'users'])->name('index');
+            Route::post('/store', [ProjectController::class, 'storeUsers'])->name('store');
+            Route::get('/search', [ProjectController::class, 'searchUsers'])->name('search');
+            Route::get('/delete', [ProjectController::class, 'deleteUsers'])->name('delete');
+            Route::post('/destroy', [ProjectController::class, 'destroyUsers'])->name('destroy');
+        });
+
         Route::get('/{id}', [ProjectController::class, 'show'])->name('show');
+        Route::get('/{id}/parameters', [ProjectController::class, 'parameters'])->name('parameters');
     });
 
     Route::prefix('task')->name('task.')->group(function () {

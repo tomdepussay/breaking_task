@@ -1,10 +1,17 @@
 <div class="modal-container">
     <div class="modal-header">
         <p class="modal-title">Ajouter une tâche</p>
-        <button class="modal-close" data-modal="addTask">
+        <button class="modal-close" data-modal="createTask">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+            </svg>
+        </button>
     </div>
     <div class="modal-content">
-        <form action="" id="addTaskForm">
+        <form action="" id="createTaskForm">
             <!-- Name -->
             <div class="flex flex-col gap-2">
                 <label for="name">Nom :</label>
@@ -19,29 +26,30 @@
             <div class="flex flex-col gap-2">
                 <label for="column_id">Colonne :</label>
                 <select name="column_id" id="column_id" class="rounded">
-                    @foreach ($columns as $column)
-                    <option value="{{ $column->id }}" {{ $column->id == $id_column ? 'selected' : '' }}>
-                        {{ $column->name }}</option>
+                    @foreach($columns as $column)
+                        <option value="{{ $column->id }}" {{ $column->id == $id_column ? 'selected' : '' }}>
+                            {{ $column->name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
             <div class="flex flex-col gap-2">
-                <label for=category_id">Catégorie :</label>
+                <label for="category_id">Catégorie :</label>
                 <select name="category_id" id="category_id" class="rounded">
                     <option value="" disabled selected>Choisir une catégorie</option>
                     @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="flex gap-4">
                 <!-- Priority -->
                 <div class="flex flex-col gap-2 w-1/2">
-                    <label for=priority_id">Priorité :</label>
+                    <label for="priority_id">Priorité :</label>
                     <select name="priority_id" id="priority_id" class="rounded">
                         <option value="" disabled selected>Choisir une priorité</option>
                         @foreach ($priorities as $priority)
-                        <option value="{{ $priority->id }}">{{ $priority->name }}</option>
+                            <option value="{{ $priority->id }}">{{ $priority->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -60,10 +68,11 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" onclick="addTask()"
-            class="bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">Ajouter
-            une tâche</button>
-        <button type="button" class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white"
-            data-modal="addTask">Fermer</button>
+        <button type="button" class="btn-store-task bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">
+            Ajouter une tâche
+        </button>
+        <button type="button" class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white" data-modal="createTask">
+            Fermer
+        </button>
     </div>
 </div>

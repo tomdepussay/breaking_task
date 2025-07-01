@@ -9,7 +9,7 @@
         <p>Êtes-vous sûr de vouloir supprimer le projet <span class="text-gray-800 font-bold">{{ $project->name }}</span> définitivement ?</p>
     </div>
     <div class="modal-footer">
-        <button class="bg-red-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg" onclick="deleteProject({{ $project->id }})">Oui, supprimer le projet</button>
+        <button data-project-id="{{ $project->id }}" class="btn-destroy-project bg-red-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">Oui, supprimer le projet</button>
         <button class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white" data-modal="deleteProject">Non, fermer</button>
     </div>
 </div>

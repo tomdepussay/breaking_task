@@ -23,17 +23,18 @@ class TaskController extends Controller
      */
     public function create(Request $request)
     {
-        $id_column = $request->query('id');
-        $id_project = $request->query('project_id');
+        $column_id = $request->column_id;
 
-        $columns = Column::where('project_id', $id_project)->get();
-        $priorities = Priority::where('project_id', $id_project)->get();
-        $categories = Category::where('project_id', $id_project)->get();
+        $column = Column::find($column_id);
+
+        $columns = Column::where('project_id', $column->project_id)->get();
+        $priorities = Priority::where('project_id', $column->project_id)->get();
+        $categories = Category::where('project_id', $column->project_id)->get();
 
         return view('task/create', [
-            'id_column' => $id_column,
+            'id_column' => $column_id,
             'name' => 'Nouvelle tâche',
-            'id_project' => $id_project,
+            'id_project' => $column->project_id,
             'columns' => $columns,
             'priorities' => $priorities,
             'categories' => $categories,
@@ -71,9 +72,11 @@ class TaskController extends Controller
             'created_by' => auth()->id(),
         ]));
 
-        // Redirect to the task list or show page
-        return redirect()->route('projects.list', ['id' => $request->input('project_id')])
-            ->with('success', 'Tâche créée avec succès.');
+        return response()->json([
+            'message' => 'Tâche ajoutée avec succès',
+            'task' => $task,
+            'column_id' => $task->column_id,
+        ]);
     }
 
     /**

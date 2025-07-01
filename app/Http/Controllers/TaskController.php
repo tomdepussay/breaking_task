@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Column;
 use App\Models\Priority;
-use App\Models\Category;
+use App\Models\Task;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -33,7 +33,7 @@ class TaskController extends Controller
 
         return view('task/create', [
             'id_column' => $column_id,
-            'name' => "Nouvelle tâche",
+            'name' => 'Nouvelle tâche',
             'id_project' => $column->project_id,
             'columns' => $columns,
             'priorities' => $priorities,
@@ -48,8 +48,8 @@ class TaskController extends Controller
     {
         // Put the task on last position of the column
         $lastTask = Task::where('column_id', $request->input('column_id'))
-                        ->orderBy('order', 'desc')
-                        ->first();
+            ->orderBy('order', 'desc')
+            ->first();
         $order = $lastTask ? $lastTask->order + 1 : 0;
         $request->merge(['order' => $order]);
 
@@ -72,9 +72,6 @@ class TaskController extends Controller
             'created_by' => auth()->id(),
         ]));
 
-        // Redirect to the task list or show page
-        // return redirect()->route('projects.list', ['id' => $request->input('project_id')])
-                        //  ->with('success', 'Tâche créée avec succès.');
         return response()->json([
             'message' => 'Tâche ajoutée avec succès',
             'task' => $task,

@@ -38,9 +38,9 @@ class ColumnController extends Controller
     {
         $id = $request->id;
         $column = Column::find($id);
-        
+
         return view('column/show', [
-            'column' => $column
+            'column' => $column,
         ]);
     }
 

@@ -34,9 +34,14 @@ class ColumnController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Column $column)
+    public function show(Request $request)
     {
-        //
+        $id = $request->id;
+        $column = Column::find($id);
+        
+        return view('column/show', [
+            'column' => $column
+        ]);
     }
 
     /**

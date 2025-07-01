@@ -13,15 +13,17 @@
     </div>
     <div class="modal-content">
         <form action="" id="editProjectForm">
+            <input type="hidden" name="project_id" value="{{ $project->id }}">
             <div class="flex flex-col gap-2">
                 <label for="name">Nom :</label>
-                <input class="rounded" type="text" name="name" id="name" value="{{ $project->name }}">
+                <input class="rounded" type="text" name="name" id="name" value="{{ $project->name }}" autocomplete="off">
             </div>
         </form>
     </div>
     <div class="modal-footer">
-        <button class="bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg"
-            onclick="editProject({{ $project->id }})">Modifier le projet</button>
+        <button class="btn-update-project bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">
+            Modifier le projet
+        </button>
         <button class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white" data-modal="editProject">Fermer</button>
     </div>
 </div>

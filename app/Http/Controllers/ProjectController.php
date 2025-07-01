@@ -14,21 +14,13 @@ class ProjectController extends Controller
     /**
      * Return list of project
      */
-    public function list()
+    public function index()
     {
         $projects = Auth::user()->projects;
             
-        return view("projects/list", [
+        return view("project/index", [
             'projects' => $projects
         ]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
     }
 
     /**

@@ -34,7 +34,7 @@
         </div>
     </x-slot>
 
-    <div>
+    <div class="p-6 py-0">
         @include('project.view.kanban')
         @include('project.view.table')
         @include('project.view.calendar')

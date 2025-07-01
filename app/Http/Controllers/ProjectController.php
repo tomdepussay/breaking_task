@@ -206,14 +206,14 @@ class ProjectController extends Controller
         $projectId = $request->project_id;
         $project = Project::find($projectId);
 
-        $users = User::where(function($query) use ($search) {
-            $query->where('firstname', 'like', '%'. $search. '%')
-                ->orWhere('lastname', 'like', '%'. $search. '%')
-                ->orWhere('email', 'like', '%'. $search. '%');
+        $users = User::where(function ($query) use ($search) {
+            $query->where('firstname', 'like', '%'.$search.'%')
+                ->orWhere('lastname', 'like', '%'.$search.'%')
+                ->orWhere('email', 'like', '%'.$search.'%');
         })
-        ->whereNotIn('id', $project->users->pluck('id'))
-        ->whereNot('id', Auth::id())
-        ->get();
+            ->whereNotIn('id', $project->users->pluck('id'))
+            ->whereNot('id', Auth::id())
+            ->get();
 
         return view('project/parameters/tabs/users/search', [
             'users' => $users,
@@ -249,7 +249,7 @@ class ProjectController extends Controller
 
         $user = User::find($user_id);
         $project = Project::find($project_id);
-     
+
         return view('project/parameters/tabs/users/delete', [
             'user' => $user,
             'project' => $project,
@@ -265,13 +265,13 @@ class ProjectController extends Controller
             'project_id' => 'integer',
             'user_id' => 'integer',
         ]);
-        
+
         $project = Project::find($validated['project_id']);
         $user = User::find($validated['user_id']);
         $project->users()->detach($user);
 
         return response()->json([
-           'message' => 'Utilisateur supprimé avec succès',
+            'message' => 'Utilisateur supprimé avec succès',
         ]);
     }
 }

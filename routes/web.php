@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete', [ProjectController::class, 'delete'])->name('delete');
         Route::post('/destroy', [ProjectController::class, 'destroy'])->name('destroy');
 
-        Route::prefix('users')->name('users.')->group(function (){
+        Route::prefix('users')->name('users.')->group(function () {
             Route::get('/', [ProjectController::class, 'users'])->name('index');
             Route::post('/store', [ProjectController::class, 'storeUsers'])->name('store');
             Route::get('/search', [ProjectController::class, 'searchUsers'])->name('search');

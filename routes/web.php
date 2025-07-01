@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ColumnController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function() {
@@ -18,16 +19,24 @@ Route::middleware('auth')->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
-    Route::get('/projects/list', [ProjectController::class, 'list'])->name('projects.list');
-    Route::post('/project/add', [ProjectController::class, 'store'])->name('project.store');
-    Route::get('/project/edit', [ProjectController::class, 'edit'])->name('project.edit');
-    Route::post('/project/edit', [ProjectController::class, 'update'])->name('project.edit');
-    Route::get('/project/delete', [ProjectController::class, 'delete'])->name('project.delete');
-    Route::post('/project/delete', [ProjectController::class, 'destroy'])->name('project.delete');
-    Route::get('/projet/{id}', [ProjectController::class, 'show'])->name('project.show');
+    Route::prefix('project')->name('project.')->group(function() {
+        Route::get('/index', [ProjectController::class, 'index'])->name('index');
+        Route::post('/store', [ProjectController::class, 'store'])->name('store');
+        Route::get('/edit', [ProjectController::class, 'edit'])->name('edit');
+        Route::post('/update', [ProjectController::class, 'update'])->name('update');
+        Route::get('/delete', [ProjectController::class, 'delete'])->name('delete');
+        Route::post('/destroy', [ProjectController::class, 'destroy'])->name('destroy');
+        Route::get('/{id}', [ProjectController::class, 'show'])->name('show');
+    });
 
-    Route::get('/task/create', [TaskController::class, 'create'])->name('task.create');
-    Route::post('/task/store', [TaskController::class, 'store'])->name('task.store');
+    Route::prefix('task')->name('task.')->group(function() {
+        Route::get('/create', [TaskController::class, 'create'])->name('create');
+        Route::post('/store', [TaskController::class, 'store'])->name('store');
+    });
+
+    Route::prefix('column')->name('column.')->group(function() {
+        Route::get('/show', [ColumnController::class,'show'])->name('show');
+    });
 });
 
 require __DIR__.'/auth.php';

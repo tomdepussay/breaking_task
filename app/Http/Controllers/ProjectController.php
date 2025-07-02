@@ -179,7 +179,7 @@ class ProjectController extends Controller
         $id = $request->project_id;
 
         $project = Project::find($id);
-        
+
         return view('project/leave', [
             'project' => $project,
         ]);
@@ -195,9 +195,8 @@ class ProjectController extends Controller
 
         $project->users()->detach(Auth::id());
 
-
         return response()->json([
-           'message' => 'Vous avez quitté le projet',
+            'message' => 'Vous avez quitté le projet',
         ]);
     }
 

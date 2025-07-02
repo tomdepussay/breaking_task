@@ -1,6 +1,6 @@
-<ul class="mt-6 grid grid-cols-3 gap-3">
+<ul class="mt-6 w-full gap-3">
     @foreach ($project->users as $user)
-        <li class="flex justify-start items-center gap-2 px-3 py-2 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <li class="flex justify-start items-center gap-2 px-3 py-2">
             @if ($project->owner_id != $user->id && $user->id != auth()->user()->id)
                 <div>
                     <button type="button" data-user-id="{{ $user->id }}" class="btn-delete-users bg-red-800 text-white p-2 rounded shadow-sm hover:shadow-lg">

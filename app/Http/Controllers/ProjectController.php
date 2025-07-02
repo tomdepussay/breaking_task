@@ -171,6 +171,36 @@ class ProjectController extends Controller
         ]);
     }
 
+    /**
+     * Affichage de la confirmation pour quitter un projet
+     */
+    public function leave(Request $request)
+    {
+        $id = $request->project_id;
+
+        $project = Project::find($id);
+        
+        return view('project/leave', [
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Quitter un projet
+     */
+    public function quit(Request $request)
+    {
+        $project_id = $request->project_id;
+        $project = Project::find($project_id);
+
+        $project->users()->detach(Auth::id());
+
+
+        return response()->json([
+           'message' => 'Vous avez quitté le projet',
+        ]);
+    }
+
     /*
     * Affichage des paramètres d'un projet
     */

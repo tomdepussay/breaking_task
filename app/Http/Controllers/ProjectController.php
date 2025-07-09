@@ -104,7 +104,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-   public function show($id)
+    public function show($id)
     {
         $project = Project::with('tasks')->findOrFail($id);
 

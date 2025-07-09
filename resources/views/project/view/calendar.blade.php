@@ -9,7 +9,6 @@
             <button data-view="week" class="view-btn btn-inactive px-3 py-1 rounded">Semaine</button>
             <button data-view="month" class="view-btn btn-inactive px-3 py-1 rounded">Mois</button>
         </div>
-
     </div>
     @include('project.view.calendar.day-view')
     @include('project.view.calendar.week-view')

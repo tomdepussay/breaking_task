@@ -18,7 +18,7 @@ document.getElementById('createTask').addEventListener('click', function (e) {
     formData.append('column_id', column_id);
     formData.append('category_id', category_id);
     formData.append('priority_id', priority_id);
-    formData.append('due_date', due_date);
+    formData.append('deadline_at', due_date);
     formData.append('project_id', project_id);
 
     fetch(taskRoutes.store, {

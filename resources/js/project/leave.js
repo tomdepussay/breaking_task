@@ -1,9 +1,9 @@
 document.addEventListener('click', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-
     let button = e.target.closest('.btn-leave-project');
     if(!button) return;
+
+    e.stopPropagation();
+    e.preventDefault();
 
     let projectId = button.getAttribute('data-project-id');
 

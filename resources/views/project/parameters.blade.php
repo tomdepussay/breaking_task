@@ -21,14 +21,18 @@
         <div class="bg-white rounded p-6">
 
             @php
-                $currentTab = request('tab', 'general'); // 'general' par défaut
+                // Si l'utilisateur est le créateur alors il a accès à tous les paramètres
+                $default = Auth::id() === $project->user_id ? 'general' : 'columns';
+                $currentTab = request('tab', $default); // 'general' par défaut
             @endphp
             
             @include('project.parameters.tabs')
             <hr>
             <div class="p-4">
-                @include('project.parameters.tabs.general')
-                @include('project.parameters.tabs.users')
+                @if($project->owner_id === Auth::id())
+                    @include('project.parameters.tabs.general')
+                    @include('project.parameters.tabs.users')
+                @endif
                 @include('project.parameters.tabs.columns')
                 @include('project.parameters.tabs.categories')
                 @include('project.parameters.tabs.priorities')

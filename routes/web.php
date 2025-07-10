@@ -49,6 +49,13 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('column')->name('column.')->group(function () {
         Route::get('/show', [ColumnController::class, 'show'])->name('show');
+        Route::get('/create', [ColumnController::class, 'create'])->name('create');
+        Route::post('/store', [ColumnController::class,'store'])->name('store');
+        Route::get('/edit', [ColumnController::class, 'edit'])->name('edit');
+        Route::post('/update', [ColumnController::class, 'update'])->name('update');
+        Route::get('/delete', [ColumnController::class, 'delete'])->name('delete');
+        Route::post('/destroy', [ColumnController::class, 'destroy'])->name('destroy');
+        Route::post('/sort', [ColumnController::class, 'sort'])->name('sort');
     });
 });
 

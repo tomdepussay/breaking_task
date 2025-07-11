@@ -10,9 +10,10 @@
             <button data-view="month" class="view-btn btn-inactive px-3 py-1 rounded">Mois</button>
         </div>
     </div>
-    @include('project.view.calendar.day-view')
-    @include('project.view.calendar.week-view')
-    @include('project.view.calendar.month-view')
+    <div data-view="calendar" class="views hidden p-6" data-project-id="{{ $project->id }}">
+        <div id="dayCalendarContainer"></div>
+        <div id="weekCalendarContainer"></div>
+        <div id="monthCalendarContainer"></div>
+    </div>
 </div>
-
 @vite('resources/js/project/calendar-view.js')

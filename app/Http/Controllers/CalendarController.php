@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
     /**
-    * Display the day view for a given project,
-    * handling the day via a query parameter.
-    */
+     * Display the day view for a given project,
+     * handling the day via a query parameter.
+     */
     public function dayView(Project $project, Request $request)
     {
         $project->load('tasks');
@@ -22,6 +22,7 @@ class CalendarController extends Controller
 
         $dayTasks = $project->tasks->filter(function ($task) use ($date) {
             $taskDate = new \DateTime($task->deadline_at);
+
             return $taskDate->format('Y-m-d') === $date->format('Y-m-d');
         });
 
@@ -66,12 +67,12 @@ class CalendarController extends Controller
     {
         $project->load('tasks');
 
-        $now = new \DateTime();
+        $now = new \DateTime;
         $year = (int) $request->query('year', (int) $now->format('Y'));
         $month = (int) $request->query('month', (int) $now->format('m'));
         $day = (int) $request->query('day', (int) $now->format('d'));
 
-        $selectedDate = new \DateTime();
+        $selectedDate = new \DateTime;
         $selectedDate->setDate($year, $month, $day);
 
         $dayOfWeek = (int) $selectedDate->format('w');
@@ -84,6 +85,7 @@ class CalendarController extends Controller
 
         $weekTasks = $project->tasks->filter(function ($task) use ($startOfWeek, $endOfWeek) {
             $deadline = new \DateTime($task->deadline_at);
+
             return $deadline >= $startOfWeek && $deadline <= $endOfWeek;
         });
 

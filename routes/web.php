@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PriorityController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -66,6 +67,15 @@ Route::middleware('auth')->group(function () {
         Route::post('/update', [CategoryController::class, 'update'])->name('update');
         Route::get('/delete', [CategoryController::class, 'delete'])->name('delete');
         Route::post('/destroy', [CategoryController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('priority')->name('priority.')->group(function () {
+        Route::get('/create', [PriorityController::class, 'create'])->name('create');
+        Route::post('/store', [PriorityController::class,'store'])->name('store');
+        Route::get('/edit', [PriorityController::class, 'edit'])->name('edit');
+        Route::post('/update', [PriorityController::class, 'update'])->name('update');
+        Route::get('/delete', [PriorityController::class, 'delete'])->name('delete');
+        Route::post('/destroy', [PriorityController::class, 'destroy'])->name('destroy');
     });
 });
 

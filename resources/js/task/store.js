@@ -38,6 +38,8 @@ document.getElementById('createTask').addEventListener('click', function (e) {
 
             let column_id = data.column_id;
             reloadColumn(column_id);
+            console.log(project_id);
+            reloadMonthCalendar(project_id);
         })
         .catch(error => {
             console.log(error);

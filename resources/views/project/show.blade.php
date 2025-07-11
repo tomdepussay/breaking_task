@@ -57,7 +57,8 @@
         'resources/js/task/create.js',
         'resources/js/task/store.js',
         'resources/js/column/reload.js',
-        'resources/js/project/view.js'
+        'resources/js/project/view.js',
+        'resources/js/project/calendar/reload.js'
     ])
 
 

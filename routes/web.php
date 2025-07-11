@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete', [ProjectController::class, 'delete'])->name('delete');
         Route::post('/destroy', [ProjectController::class, 'destroy'])->name('destroy');
         Route::get('/{id}', [ProjectController::class, 'show'])->name('show');
+        Route::get('/{id}/calendar/month', [ProjectController::class, 'calendarMonthPartial'])->name('calendar.month.partial');
     });
 
     Route::prefix('task')->name('task.')->group(function () {

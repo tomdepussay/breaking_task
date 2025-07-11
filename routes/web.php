@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColumnController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PriorityController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('column')->name('column.')->group(function () {
         Route::get('/show', [ColumnController::class, 'show'])->name('show');
         Route::get('/create', [ColumnController::class, 'create'])->name('create');
-        Route::post('/store', [ColumnController::class,'store'])->name('store');
+        Route::post('/store', [ColumnController::class, 'store'])->name('store');
         Route::get('/edit', [ColumnController::class, 'edit'])->name('edit');
         Route::post('/update', [ColumnController::class, 'update'])->name('update');
         Route::get('/delete', [ColumnController::class, 'delete'])->name('delete');
@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/create', [CategoryController::class, 'create'])->name('create');
-        Route::post('/store', [CategoryController::class,'store'])->name('store');
+        Route::post('/store', [CategoryController::class, 'store'])->name('store');
         Route::get('/edit', [CategoryController::class, 'edit'])->name('edit');
         Route::post('/update', [CategoryController::class, 'update'])->name('update');
         Route::get('/delete', [CategoryController::class, 'delete'])->name('delete');
@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('priority')->name('priority.')->group(function () {
         Route::get('/create', [PriorityController::class, 'create'])->name('create');
-        Route::post('/store', [PriorityController::class,'store'])->name('store');
+        Route::post('/store', [PriorityController::class, 'store'])->name('store');
         Route::get('/edit', [PriorityController::class, 'edit'])->name('edit');
         Route::post('/update', [PriorityController::class, 'update'])->name('update');
         Route::get('/delete', [PriorityController::class, 'delete'])->name('delete');

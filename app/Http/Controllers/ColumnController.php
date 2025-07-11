@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Column;
-use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Http\Request;
 
 class ColumnController extends Controller
 {
@@ -23,8 +23,9 @@ class ColumnController extends Controller
     {
         $id_project = $request->project_id;
         $project = Project::find($id_project);
+
         return view('column/create', [
-            'project' => $project
+            'project' => $project,
         ]);
     }
 
@@ -38,7 +39,7 @@ class ColumnController extends Controller
             'name' => 'required|string|max:255',
             'begin_column' => 'required|boolean',
             'end_column' => 'required|boolean',
-            'project_id' =>'required|integer',
+            'project_id' => 'required|integer',
         ]);
 
         $project = Project::find($request->project_id);
@@ -47,14 +48,14 @@ class ColumnController extends Controller
 
         $column = new Column;
         $column->project_id = $validated['project_id'];
-        $column->name = $validated["name"];
+        $column->name = $validated['name'];
         $column->begin_column = $validated['begin_column'];
         $column->end_column = $validated['end_column'];
         $column->order = $last_order;
         $column->save();
 
         return response()->json([
-            'message' => 'Colonne ajoutée avec succès'
+            'message' => 'Colonne ajoutée avec succès',
         ]);
     }
 
@@ -80,7 +81,7 @@ class ColumnController extends Controller
         $column = Column::find($id_column);
 
         return view('column/edit', [
-            'column' => $column
+            'column' => $column,
         ]);
     }
 
@@ -98,12 +99,12 @@ class ColumnController extends Controller
 
         $column = Column::find($request->column_id);
         $column->name = $validated['name'];
-        $column->begin_column = $validated["begin_column"];
+        $column->begin_column = $validated['begin_column'];
         $column->end_column = $validated['end_column'];
         $column->save();
 
         return response()->json([
-            'message' => 'Colonne modifiée avec succès'
+            'message' => 'Colonne modifiée avec succès',
         ]);
     }
 
@@ -113,7 +114,7 @@ class ColumnController extends Controller
         $column = Column::find($id_column);
 
         return view('column/delete', [
-            'column' => $column
+            'column' => $column,
         ]);
     }
 
@@ -124,17 +125,18 @@ class ColumnController extends Controller
     {
         $column = Column::find($request->column_id);
 
-        if($column->tasks()->count() > 0){
+        if ($column->tasks()->count() > 0) {
             return response()->json([
                 'success' => false,
-                'message' => 'Vous ne pouvez pas supprimer cette colonne car elle contient des tâches'
+                'message' => 'Vous ne pouvez pas supprimer cette colonne car elle contient des tâches',
             ]);
         }
 
         $column->delete();
+
         return response()->json([
             'success' => true,
-            'message' => 'Colonne supprimée avec succès'
+            'message' => 'Colonne supprimée avec succès',
         ]);
     }
 
@@ -148,21 +150,21 @@ class ColumnController extends Controller
         $newOrder = $column->order + ($direction == 'up' ? -1 : 1);
 
         $otherColumn = Column::where('order', $newOrder)->first();
-        if($otherColumn){
+        if ($otherColumn) {
             $otherColumn->order = $column->order;
             $otherColumn->save();
             $column->order = $newOrder;
             $column->save();
         } else {
             return response()->json([
-               'success' => false,
-               'message' => 'Impossible de déplacer cette colonne'
+                'success' => false,
+                'message' => 'Impossible de déplacer cette colonne',
             ]);
         }
 
         return response()->json([
-           'success' => true,
-           'message' => 'Colonne déplacée avec succès'
+            'success' => true,
+            'message' => 'Colonne déplacée avec succès',
         ]);
     }
 }

@@ -25,7 +25,7 @@ class PriorityController extends Controller
         $project = Project::find($id_project);
 
         return view('priority/create', [
-            'project' => $project
+            'project' => $project,
         ]);
     }
 
@@ -37,7 +37,7 @@ class PriorityController extends Controller
         // Valider les données du formulaire
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'project_id' =>'required|integer',
+            'project_id' => 'required|integer',
         ]);
 
         $priority = new Priority;
@@ -46,7 +46,7 @@ class PriorityController extends Controller
         $priority->save();
 
         return response()->json([
-            'message' => 'Priorité ajoutée avec succès'
+            'message' => 'Priorité ajoutée avec succès',
         ]);
     }
 
@@ -67,7 +67,7 @@ class PriorityController extends Controller
         $priority = Priority::find($priority_id);
 
         return view('priority/edit', [
-            'priority' => $priority
+            'priority' => $priority,
         ]);
     }
 
@@ -86,7 +86,7 @@ class PriorityController extends Controller
         $priority->save();
 
         return response()->json([
-            'message' => 'Priorité modifiée avec succès'
+            'message' => 'Priorité modifiée avec succès',
         ]);
     }
 
@@ -96,7 +96,7 @@ class PriorityController extends Controller
         $priority = Priority::find($priority_id);
 
         return view('priority/delete', [
-            'priority' => $priority
+            'priority' => $priority,
         ]);
     }
 
@@ -107,17 +107,18 @@ class PriorityController extends Controller
     {
         $priority = Priority::find($request->priority_id);
 
-        if($priority->tasks()->count() > 0){
+        if ($priority->tasks()->count() > 0) {
             return response()->json([
                 'success' => false,
-                'message' => 'Vous ne pouvez pas supprimer cette priorité car elle contient des tâches'
+                'message' => 'Vous ne pouvez pas supprimer cette priorité car elle contient des tâches',
             ]);
         }
 
         $priority->delete();
+
         return response()->json([
             'success' => true,
-            'message' => 'Priorité supprimée avec succès'
+            'message' => 'Priorité supprimée avec succès',
         ]);
     }
 }

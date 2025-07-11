@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $project = Project::find($id_project);
 
         return view('category/create', [
-            'project' => $project
+            'project' => $project,
         ]);
     }
 
@@ -37,7 +37,7 @@ class CategoryController extends Controller
         // Valider les données du formulaire
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'project_id' =>'required|integer',
+            'project_id' => 'required|integer',
         ]);
 
         $category = new Category;
@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $category->save();
 
         return response()->json([
-            'message' => 'Catégorie ajoutée avec succès'
+            'message' => 'Catégorie ajoutée avec succès',
         ]);
     }
 
@@ -67,7 +67,7 @@ class CategoryController extends Controller
         $category = Category::find($category_id);
 
         return view('category/edit', [
-            'category' => $category
+            'category' => $category,
         ]);
     }
 
@@ -86,7 +86,7 @@ class CategoryController extends Controller
         $category->save();
 
         return response()->json([
-            'message' => 'Catégorie modifiée avec succès'
+            'message' => 'Catégorie modifiée avec succès',
         ]);
     }
 
@@ -96,7 +96,7 @@ class CategoryController extends Controller
         $category = Category::find($category_id);
 
         return view('category/delete', [
-            'category' => $category
+            'category' => $category,
         ]);
     }
 
@@ -107,17 +107,18 @@ class CategoryController extends Controller
     {
         $category = Category::find($request->category_id);
 
-        if($category->tasks()->count() > 0){
+        if ($category->tasks()->count() > 0) {
             return response()->json([
                 'success' => false,
-                'message' => 'Vous ne pouvez pas supprimer cette catégorie car elle contient des tâches'
+                'message' => 'Vous ne pouvez pas supprimer cette catégorie car elle contient des tâches',
             ]);
         }
 
         $category->delete();
+
         return response()->json([
             'success' => true,
-            'message' => 'Catégorie supprimée avec succès'
+            'message' => 'Catégorie supprimée avec succès',
         ]);
     }
 }

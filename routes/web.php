@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -56,6 +57,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete', [ColumnController::class, 'delete'])->name('delete');
         Route::post('/destroy', [ColumnController::class, 'destroy'])->name('destroy');
         Route::post('/sort', [ColumnController::class, 'sort'])->name('sort');
+    });
+
+    Route::prefix('category')->name('category.')->group(function () {
+        Route::get('/create', [CategoryController::class, 'create'])->name('create');
+        Route::post('/store', [CategoryController::class,'store'])->name('store');
+        Route::get('/edit', [CategoryController::class, 'edit'])->name('edit');
+        Route::post('/update', [CategoryController::class, 'update'])->name('update');
+        Route::get('/delete', [CategoryController::class, 'delete'])->name('delete');
+        Route::post('/destroy', [CategoryController::class, 'destroy'])->name('destroy');
     });
 });
 

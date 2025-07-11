@@ -46,10 +46,10 @@ class ColumnController extends Controller
         $last_order++;
 
         $column = new Column;
-        $column->project_id = $request->project_id;
-        $column->name = $request->name;
-        $column->begin_column = $request->begin_column;
-        $column->end_column = $request->end_column;
+        $column->project_id = $validated['project_id'];
+        $column->name = $validated["name"];
+        $column->begin_column = $validated['begin_column'];
+        $column->end_column = $validated['end_column'];
         $column->order = $last_order;
         $column->save();
 
@@ -97,9 +97,9 @@ class ColumnController extends Controller
         ]);
 
         $column = Column::find($request->column_id);
-        $column->name = $request->name;
-        $column->begin_column = $request->begin_column;
-        $column->end_column = $request->end_column;
+        $column->name = $validated['name'];
+        $column->begin_column = $validated["begin_column"];
+        $column->end_column = $validated['end_column'];
         $column->save();
 
         return response()->json([

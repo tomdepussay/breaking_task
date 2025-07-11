@@ -58,7 +58,8 @@
         'resources/js/task/store.js',
         'resources/js/column/reload.js',
         'resources/js/project/view.js',
-        'resources/js/project/calendar/reload.js'
+        'resources/js/project/calendar/reload.js',
+        'resources/js/project/calendar/navigation.js',
     ])
 
 
@@ -108,21 +109,25 @@
                 });
         }
 
-    function openAddTask(column_id, project_id) {
-        fetch(`{{ route('task.create') }}?id=${column_id}&project_id=${project_id}`)
-            .then(response => {
-                if (!response.ok) throw new Error('Erreur lors de la récupération du formulaire');
-                return response.text();
-            })
-            .then(data => {
-                let modal = document.getElementById('addTask');
-                modal.innerHTML = data;
-                modal.style.display = 'flex';
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+        function openAddTask(column_id, project_id) {
+            fetch(`{{ route('task.create') }}?id=${column_id}&project_id=${project_id}`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Erreur lors de la récupération du formulaire');
+                    return response.text();
+                })
+                .then(data => {
+                    let modal = document.getElementById('addTask');
+                    modal.innerHTML = data;
+                    modal.style.display = 'flex';
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectId = {{ $project->id }};
+            initMonthCalendarNavigation(projectId);
+        });
     </script>
 
 </x-app-layout>

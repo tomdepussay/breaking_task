@@ -41,7 +41,7 @@
         'resources/js/project/delete.js',
         'resources/js/project/destroy.js'
     ])
-     
+    
     <script>
         const projectRoutes = {
             index: "{{ route('project.index') }}",

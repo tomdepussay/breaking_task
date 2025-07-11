@@ -177,17 +177,4 @@ class ProjectController extends Controller
             'message' => 'Projet supprimé avec succès',
         ]);
     }
-
-    /**
-     * Display the calendar month partial for the specified project.
-     */
-    public function calendarMonthPartial($id)
-    {
-        $project = Auth::user()->projects()->with('tasks')->findOrFail($id);
-
-        return view('project.view.calendar.month-view', [
-            'project' => $project,
-        ]);
-    }
-
 }

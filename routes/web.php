@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CalendarController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,7 +28,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete', [ProjectController::class, 'delete'])->name('delete');
         Route::post('/destroy', [ProjectController::class, 'destroy'])->name('destroy');
         Route::get('/{id}', [ProjectController::class, 'show'])->name('show');
-        Route::get('/{id}/calendar/month', [ProjectController::class, 'calendarMonthPartial'])->name('calendar.month.partial');
     });
 
     Route::prefix('task')->name('task.')->group(function () {
@@ -37,6 +37,12 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('column')->name('column.')->group(function () {
         Route::get('/show', [ColumnController::class, 'show'])->name('show');
+    });
+
+    Route::prefix('calendar')->name('calendar.')->group(function () {
+        Route::get('/day-view/{project}', [CalendarController::class, 'dayView'])->name('day-view');
+        Route::get('/week-view/{project}', [CalendarController::class, 'weekView'])->name('week-view');
+        Route::get('/month-view/{project}', [CalendarController::class, 'monthView'])->name('month-view');
     });
 });
 

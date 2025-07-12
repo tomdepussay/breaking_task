@@ -1,5 +1,11 @@
+function hideAllCalendarViews() {
+    document.querySelectorAll('.calendar-view').forEach(el => el.classList.add('hidden'));
+}
+
 /* Reload Day view */
 window.reloadDayCalendar = function (projectId, date = null) {
+    hideAllCalendarViews();
+
     const calendar = document.querySelector('[data-calendar="day"]');
     if (!calendar) return;
 
@@ -25,6 +31,8 @@ window.reloadDayCalendar = function (projectId, date = null) {
 
 /* Reload Week view */
 window.reloadWeekCalendar = function (projectId, year = null, month = null, day = null) {
+    hideAllCalendarViews();
+
     const calendar = document.querySelector('[data-calendar="week"]');
     if (!calendar) return;
 
@@ -53,6 +61,8 @@ window.reloadWeekCalendar = function (projectId, year = null, month = null, day 
 
 /* Reload Month view */
 window.reloadMonthCalendar = function (projectId, year = null, month = null) {
+    hideAllCalendarViews();
+    
     const calendar = document.querySelector('[data-calendar="month"]');
     if (!calendar) return;
 

@@ -1,6 +1,12 @@
+@php
+    use Carbon\Carbon;
+    Carbon::setLocale('fr');
+    $monthName = Carbon::createFromDate($year, $month)->translatedFormat('F');
+@endphp
+
 <div data-calendar="month" class="calendar-view" data-year="{{ $year }}" data-month="{{ $month }}">
     <h2 class="text-xl font-semibold" id="calendarTitle">
-        {{ DateTime::createFromFormat('!m', $month)->format('F') }} {{ $year }}
+        {{ ucfirst($monthName) }} {{ $year }}
     </h2>
 
     <div class="flex justify-between my-2">

@@ -1,6 +1,6 @@
 <div data-calendar="day" class="calendar-view" data-year="{{ $date->format('Y') }}" data-month="{{ $date->format('m') }}" data-day="{{ $date->format('d') }}">
     <h2 class="text-xl font-semibold mb-2">
-        {{ $date->locale('fr_FR')->isoFormat('dddd D MMMM YYYY') }}
+        {{ ucfirst($date->locale('fr_FR')->isoFormat('dddd D MMMM YYYY')) }}
     </h2>
 
     <div class="flex justify-between mb-4">

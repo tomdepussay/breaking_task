@@ -33,7 +33,7 @@
         'resources/js/project/leave.js',
         'resources/js/project/quit.js',
     ])
-     
+    
     <script>
         const projectRoutes = {
             index: "{{ route('project.index') }}",

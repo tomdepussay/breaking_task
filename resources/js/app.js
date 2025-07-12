@@ -1,7 +1,6 @@
 import "./bootstrap";
 import "./modal";
 import "./tabs";
-import "./project/store.js";
 
 import Alpine from "alpinejs";
 

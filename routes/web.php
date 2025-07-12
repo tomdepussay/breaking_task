@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColumnController;
 use App\Http\Controllers\DashboardController;
@@ -76,6 +77,12 @@ Route::middleware('auth')->group(function () {
         Route::post('/update', [PriorityController::class, 'update'])->name('update');
         Route::get('/delete', [PriorityController::class, 'delete'])->name('delete');
         Route::post('/destroy', [PriorityController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('calendar')->name('calendar.')->group(function () {
+        Route::get('/day-view/{project}', [CalendarController::class, 'dayView'])->name('day-view');
+        Route::get('/week-view/{project}', [CalendarController::class, 'weekView'])->name('week-view');
+        Route::get('/month-view/{project}', [CalendarController::class, 'monthView'])->name('month-view');
     });
 });
 

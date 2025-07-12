@@ -99,9 +99,9 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = Project::find($id);
+        $project = Project::with('tasks')->findOrFail($id);
 
-        return view('project/show', [
+        return view('project.show', [
             'project' => $project,
         ]);
     }

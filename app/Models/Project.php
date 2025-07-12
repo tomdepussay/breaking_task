@@ -41,4 +41,9 @@ class Project extends Model
     {
         return $this->hasMany(Task::class);
     }
+  
+    public function priorities()
+    {
+        return $this->hasMany(Priority::class);
+    }
 }

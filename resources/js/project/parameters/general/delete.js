@@ -1,11 +1,5 @@
-document.getElementById('projects-container').addEventListener('click', function (e){
-    let button = e.target.closest('.btn-delete-project');
-    if (!button) return;
-
-    e.stopPropagation();
-    e.preventDefault();
-
-    let project_id = button.dataset.projectId;
+document.getElementById('btn-delete-project').addEventListener('click', function (e){
+    let project_id = document.getElementById('project_id').value;
 
     fetch(`${projectRoutes.delete}?id=${project_id}`)
         .then(response => {

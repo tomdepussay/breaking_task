@@ -1,5 +1,6 @@
 import "./bootstrap";
 import "./modal";
+import "./tabs";
 
 import Alpine from "alpinejs";
 

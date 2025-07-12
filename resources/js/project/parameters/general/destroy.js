@@ -5,7 +5,7 @@ document.getElementById('deleteProject').addEventListener('click', function(e){
     e.preventDefault();
 
     let formData = new FormData();
-    let project_id = button.getAttribute('data-project-id');
+    let project_id = document.getElementById('project_id').value;
     formData.append('id', project_id);
 
     fetch(projectRoutes.destroy, {
@@ -20,8 +20,7 @@ document.getElementById('deleteProject').addEventListener('click', function(e){
             return response.json();
         })
         .then(data => {
-            reloadProjects();
-            document.querySelector(".modal-close[data-modal='deleteProject']").click();
+            window.location.href = dashboard;
         })
         .catch(error => {
             console.log(error);

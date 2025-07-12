@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('task')->name('task.')->group(function () {
         Route::get('/create', [TaskController::class, 'create'])->name('create');
         Route::post('/store', [TaskController::class, 'store'])->name('store');
+        Route::get('/edit', [TaskController::class, 'edit'])->name('edit');
+        Route::post('/update', [TaskController::class, 'update'])->name('update');
     });
 
     Route::prefix('column')->name('column.')->group(function () {

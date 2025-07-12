@@ -69,12 +69,4 @@
         'resources/js/project/calendar/reload.js',
         'resources/js/project/calendar/navigation.js',
     ])
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const projectId = {{ $project->id }};
-            initMonthCalendarNavigation(projectId);
-        });
-    </script>
-
 </x-app-layout>

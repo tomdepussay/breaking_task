@@ -94,13 +94,13 @@ class TaskController extends Controller
     {
         $id_task = $request->task_id;
         $task = Task::find($id_task);
-        
+
         $column = Column::find($task->column_id);
         $columns = Column::where('project_id', $column->project_id)->get();
 
         $priority = Priority::find($task->priority_id);
         $priorities = Priority::where('project_id', $column->project_id)->get();
-        
+
         $category = Category::find($task->category_id);
         $categories = Category::where('project_id', $column->project_id)->get();
 

@@ -77,7 +77,9 @@ class CalendarController extends Controller
         $endOfWeek = $selectedDate->copy()->endOfWeek(Carbon::SUNDAY);
 
         $weekTasks = $project->tasks->filter(function ($task) use ($startOfWeek, $endOfWeek) {
-            if (!$task->deadline_at) return false;
+            if (! $task->deadline_at) {
+                return false;
+            }
 
             $deadline = Carbon::parse($task->deadline_at)->startOfDay();
 
@@ -90,5 +92,5 @@ class CalendarController extends Controller
             'endOfWeek' => $endOfWeek,
             'weekTasks' => $weekTasks,
         ]);
-}
+    }
 }

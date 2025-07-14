@@ -52,6 +52,7 @@
 
     <script>
         const taskRoutes = {
+            show: "{{ route('task.show') }}",
             create: "{{ route('task.create') }}",
             store: "{{ route('task.store') }}",
             edit: "{{ route('task.edit') }}",

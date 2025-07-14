@@ -67,26 +67,21 @@ class CalendarController extends Controller
     {
         $project->load('tasks');
 
-        $now = new \DateTime;
-        $year = (int) $request->query('year', (int) $now->format('Y'));
-        $month = (int) $request->query('month', (int) $now->format('m'));
-        $day = (int) $request->query('day', (int) $now->format('d'));
+        $now = Carbon::now();
+        $year = (int) $request->query('year', $now->year);
+        $month = (int) $request->query('month', $now->month);
+        $day = (int) $request->query('day', $now->day);
 
-        $selectedDate = new \DateTime;
-        $selectedDate->setDate($year, $month, $day);
-
-        $dayOfWeek = (int) $selectedDate->format('w');
-        $offsetToMonday = ($dayOfWeek + 6) % 7;
-        $startOfWeek = clone $selectedDate;
-        $startOfWeek->modify("-$offsetToMonday days");
-
-        $endOfWeek = clone $startOfWeek;
-        $endOfWeek->modify('+6 days');
+        $selectedDate = Carbon::create($year, $month, $day);
+        $startOfWeek = $selectedDate->copy()->startOfWeek(Carbon::MONDAY);
+        $endOfWeek = $selectedDate->copy()->endOfWeek(Carbon::SUNDAY);
 
         $weekTasks = $project->tasks->filter(function ($task) use ($startOfWeek, $endOfWeek) {
-            $deadline = new \DateTime($task->deadline_at);
+            if (!$task->deadline_at) return false;
 
-            return $deadline >= $startOfWeek && $deadline <= $endOfWeek;
+            $deadline = Carbon::parse($task->deadline_at)->startOfDay();
+
+            return $deadline->between($startOfWeek->copy()->startOfDay(), $endOfWeek->copy()->endOfDay());
         });
 
         return view('project.view.calendar.week-view', [
@@ -95,5 +90,5 @@ class CalendarController extends Controller
             'endOfWeek' => $endOfWeek,
             'weekTasks' => $weekTasks,
         ]);
-    }
+}
 }

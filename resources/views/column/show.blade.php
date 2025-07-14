@@ -12,6 +12,6 @@
 <hr>
 <ul class="p-3 flex flex-col gap-2">
     @foreach ($column->tasks as $task)
-        @include('task.show')
+        @include('task/show/kanban')
     @endforeach
 </ul>

@@ -145,10 +145,32 @@ class TaskController extends Controller
     }
 
     /**
+     * Show the form for deleting the specified resource.
+     */
+    public function delete(Request $request)
+    {
+        $id_task = $request->task_id;
+        $task = Task::find($id_task);
+        
+        return view('task/delete', [
+            'task' => $task,
+        ]);
+    }
+    
+
+    /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    
+    public function destroy(Request $request)
     {
-        //
+        $task = Task::find($request->task_id);
+
+        $task->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Tâche supprimée avec succès',
+        ]);
     }
 }

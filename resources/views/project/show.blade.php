@@ -56,6 +56,8 @@
             store: "{{ route('task.store') }}",
             edit: "{{ route('task.edit') }}",
             update: "{{ route('task.update') }}",
+            delete: "{{ route('task.delete') }}",
+            destroy: "{{ route('task.destroy') }}",
         };
 
         const columnRoutes = {

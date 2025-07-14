@@ -1,5 +1,4 @@
 document.addEventListener('click', function (e) {
-    console.log('start update task');
 
     let button = e.target.closest('.btn-update-task');
     if (!button) return;

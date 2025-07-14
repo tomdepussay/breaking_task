@@ -151,17 +151,15 @@ class TaskController extends Controller
     {
         $id_task = $request->task_id;
         $task = Task::find($id_task);
-        
+
         return view('task/delete', [
             'task' => $task,
         ]);
     }
-    
 
     /**
      * Remove the specified resource from storage.
      */
-    
     public function destroy(Request $request)
     {
         $task = Task::find($request->task_id);

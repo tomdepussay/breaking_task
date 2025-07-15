@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColumnController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PriorityController;
@@ -7,9 +10,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('home');

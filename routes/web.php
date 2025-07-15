@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\VerifyEmailController;
 
 Route::get('/', function () {
     return view('home');
@@ -38,5 +39,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/show', [ColumnController::class, 'show'])->name('show');
     });
 });
+
+Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
+    ->middleware(['auth', 'signed'])
+    ->name('verification.verify');
 
 require __DIR__.'/auth.php';

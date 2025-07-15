@@ -1,1 +1,2 @@
-import '../app.js';
+import "../app.js";
+import "../project/reload.js";

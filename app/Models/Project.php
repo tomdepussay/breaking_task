@@ -36,4 +36,14 @@ class Project extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function priorities()
+    {
+        return $this->hasMany(Priority::class);
+    }
 }

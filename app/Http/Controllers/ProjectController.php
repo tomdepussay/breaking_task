@@ -6,13 +6,14 @@ use App\Models\Category;
 use App\Models\Column;
 use App\Models\Priority;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
     /**
-     * Return list of project
+     * Liste des projets de l'utilisateur connecté
      */
     public function index()
     {
@@ -24,15 +25,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Ajout du projet en base de données
      */
     public function store(Request $request)
     {
@@ -102,19 +95,19 @@ class ProjectController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affichage du projet
      */
     public function show($id)
     {
-        $project = Project::find($id);
+        $project = Project::with('tasks')->findOrFail($id);
 
-        return view('project/show', [
+        return view('project.show', [
             'project' => $project,
         ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affichage du formulaire de modification d'un projet
      */
     public function edit(Request $request)
     {
@@ -128,7 +121,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour du projet en base de données
      */
     public function update(Request $request)
     {
@@ -150,7 +143,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Show the confirm for delete the specified resource.
+     * Affichage de la confirmation de suppression d'un projet
      */
     public function delete(Request $request)
     {
@@ -164,7 +157,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression du projet en base de données
      */
     public function destroy(Request $request)
     {
@@ -175,6 +168,139 @@ class ProjectController extends Controller
 
         return response()->json([
             'message' => 'Projet supprimé avec succès',
+        ]);
+    }
+
+    /**
+     * Affichage de la confirmation pour quitter un projet
+     */
+    public function leave(Request $request)
+    {
+        $id = $request->project_id;
+
+        $project = Project::find($id);
+
+        return view('project/leave', [
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Quitter un projet
+     */
+    public function quit(Request $request)
+    {
+        $project_id = $request->project_id;
+        $project = Project::find($project_id);
+
+        $project->users()->detach(Auth::id());
+
+        return response()->json([
+            'message' => 'Vous avez quitté le projet',
+        ]);
+    }
+
+    /*
+    * Affichage des paramètres d'un projet
+    */
+    public function parameters($id)
+    {
+        $project = Project::find($id);
+
+        return view('project/parameters', [
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Affichage des utilisateurs d'un projet
+     */
+    public function users(Request $request)
+    {
+        $id = $request->project_id;
+        $project = Project::find($id);
+
+        return view('project/parameters/tabs/users/users', [
+            'project' => $project,
+            'users' => $project->users,
+        ]);
+    }
+
+    /**
+     * Affichage de la recherche d'utilisateur pour une collaboration
+     */
+    public function searchUsers(Request $request)
+    {
+        $search = $request->search;
+        $projectId = $request->project_id;
+        $project = Project::find($projectId);
+
+        $users = User::where(function ($query) use ($search) {
+            $query->where('firstname', 'like', '%'.$search.'%')
+                ->orWhere('lastname', 'like', '%'.$search.'%')
+                ->orWhere('email', 'like', '%'.$search.'%');
+        })
+            ->whereNotIn('id', $project->users->pluck('id'))
+            ->whereNot('id', Auth::id())
+            ->get();
+
+        return view('project/parameters/tabs/users/search', [
+            'users' => $users,
+        ]);
+    }
+
+    /**
+     * Ajout d'un utilisateur à un projet
+     */
+    public function storeUsers(Request $request)
+    {
+        $validated = $request->validate([
+            'project_id' => 'integer',
+            'user_id' => 'integer',
+        ]);
+
+        $project = Project::find($validated['project_id']);
+        $user = User::find($validated['user_id']);
+        $project->users()->attach($user);
+
+        return response()->json([
+            'message' => 'Utilisateur ajouté avec succès',
+        ]);
+    }
+
+    /**
+     * Affichage de la confirmation de suppression d'un utilisateur d'un projet
+     */
+    public function deleteUsers(Request $request)
+    {
+        $user_id = $request->user_id;
+        $project_id = $request->project_id;
+
+        $user = User::find($user_id);
+        $project = Project::find($project_id);
+
+        return view('project/parameters/tabs/users/delete', [
+            'user' => $user,
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Suppression d'un utilisateur d'un projet
+     */
+    public function destroyUsers(Request $request)
+    {
+        $validated = $request->validate([
+            'project_id' => 'integer',
+            'user_id' => 'integer',
+        ]);
+
+        $project = Project::find($validated['project_id']);
+        $user = User::find($validated['user_id']);
+        $project->users()->detach($user);
+
+        return response()->json([
+            'message' => 'Utilisateur supprimé avec succès',
         ]);
     }
 }

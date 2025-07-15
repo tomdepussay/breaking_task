@@ -5,3 +5,5 @@ import '../column/reload.js';
 import '../project/view.js';
 import '../project/calendar/reload.js';
 import '../project/calendar/navigation.js';
+import '../project/calendar-view.js';
+

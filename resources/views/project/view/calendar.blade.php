@@ -16,4 +16,5 @@
         <div id="monthCalendarContainer"></div>
     </div>
 </div>
+
 @vite('resources/js/project/calendar-view.js')

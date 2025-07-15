@@ -29,11 +29,9 @@
     </div>
 
     @vite([
-        'resources/js/project/reload.js',
-        'resources/js/project/leave.js',
-        'resources/js/project/quit.js',
+        'resources/js/app.js'
     ])
-    
+
     <script>
         const projectRoutes = {
             index: "{{ route('project.index') }}",

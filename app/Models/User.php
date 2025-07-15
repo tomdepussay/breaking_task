@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetPasswordNotification;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
-use Carbon\Carbon;
-use \App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable implements MustVerifyEmail
 {

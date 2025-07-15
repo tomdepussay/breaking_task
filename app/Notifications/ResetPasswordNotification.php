@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 class ResetPasswordNotification extends Notification
 {
     protected $token;
+
     protected $notifiable;
 
     public function __construct($token, $notifiable)
@@ -17,7 +18,7 @@ class ResetPasswordNotification extends Notification
 
         $resetUrl = url(route('password.reset', [
             'token' => $this->token,
-            'email' => $this->notifiable->getEmailForPasswordReset()
+            'email' => $this->notifiable->getEmailForPasswordReset(),
         ], false));
 
         $response = Http::withToken(env('RESEND_API_KEY'))->post('https://api.resend.com/emails', [

@@ -28,79 +28,9 @@
         </div>
     </div>
 
-@push('scripts')
+    @vite('resources/js/pages/dashboard.js')
+
     <script>
-        // PROJECT RELOAD
-        window.reloadProjects = function() {
-            fetch(projectRoutes.index)
-                .then(response => {
-                    if (!response.ok) throw new Error('Erreur lors de la récupération des données');
-                    return response.text();
-                })
-                .then(data => {
-                    let container = document.getElementById('projects-container');
-                    container.innerHTML = data;
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        }
-
-        // PROJECT LEAVE
-        document.addEventListener('click', function(e) {
-            let button = e.target.closest('.btn-leave-project');
-            if(!button) return;
-
-            e.stopPropagation();
-            e.preventDefault();
-
-            let projectId = button.getAttribute('data-project-id');
-
-            fetch(`${projectRoutes.leave}?project_id=${projectId}`)
-                .then(response => {
-                    if (!response.ok) throw new Error("Erreur lors de la récupération des données");
-                    return response.text();
-                })
-                .then(data => {
-                    let modal = document.getElementById('leaveProject');
-                    modal.innerHTML = data;
-                    modal.style.display = 'flex';
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        });
-
-        // PROECT QUIT
-        document.addEventListener('click', function (e){
-            let button = e.target.closest('.btn-quit-project');
-            if(!button) return;
-
-            let project_id = button.getAttribute('data-project-id');
-
-            let formData = new FormData;
-            formData.append('project_id', project_id);
-
-            fetch(`${projectRoutes.quit}`, {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-                body: formData,
-            })
-                .then(response => {
-                    if (!response.ok) throw new Error('Erreur lors de la mise à jour');
-                    return response.json();
-                })
-                .then(data => {
-                    reloadProjects();
-                    document.querySelector(".modal-close[data-modal='leaveProject']").click();
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        })
-
         const projectRoutes = {
             index: "{{ route('project.index') }}",
             store: "{{ route('project.store') }}",
@@ -112,5 +42,4 @@
             reloadProjects();
         });
     </script>
-@endpush
 </x-app-layout>

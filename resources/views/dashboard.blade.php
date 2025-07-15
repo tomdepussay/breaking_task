@@ -29,7 +29,9 @@
     </div>
 
     @vite([
-        'resources/js/app.js'
+        'resources/js/project/reload.js',
+        'resources/js/project/leave.js',
+        'resources/js/project/quit.js',
     ])
 
     <script>

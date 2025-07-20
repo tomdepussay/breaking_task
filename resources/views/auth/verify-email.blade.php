@@ -31,13 +31,8 @@
             </button>
         </form>
 
-        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <a href="{{ route('logout') }}" class="inline-block text-sm text-gray-500 hover:underline mt-2">
             Se déconnecter
         </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-
     </div>
 </x-guest-layout>

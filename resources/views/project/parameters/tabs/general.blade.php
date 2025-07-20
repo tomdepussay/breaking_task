@@ -28,8 +28,4 @@
     const dashboard = "{{ route('dashboard') }}";
 </script>
 
-@vite([
-    'resources/js/project/parameters/general/update.js',
-    'resources/js/project/parameters/general/delete.js',
-    'resources/js/project/parameters/general/destroy.js',
-])
+@vite('resources/js/pages/parameters.js')

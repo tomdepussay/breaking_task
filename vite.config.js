@@ -13,6 +13,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                // Fichiers CSS
                 "resources/css/app.css",
 
                 // Fichier JS
@@ -20,6 +21,7 @@ export default defineConfig({
                 "resources/js/pages/project-show.js",
                 "resources/js/pages/project-create.js",
                 "resources/js/pages/dashboard.js",
+                "resources/js/pages/parameters.js",
             ],
             refresh: true,
         }),

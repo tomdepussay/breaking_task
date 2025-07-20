@@ -1,4 +1,22 @@
+@if (! auth()->user()->hasVerifiedEmail())
+<div id="verify-modal" class="fixed inset-0 bg-black/50 flex justify-center items-center animate-fade-in">
+    <div class="bg-white p-6 rounded shadow max-w-sm text-center space-y-4">
+        <h2 class="text-xl font-bold text-red-600">Email non vérifié</h2>
+        <p class="text-gray-700">Merci de vérifier votre email pour activer votre compte.</p>
+        <form method="POST" action="{{ route('verification.send') }}">
+            @csrf
+            <button type="submit"
+                class="mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded shadow">
+                Renvoyer l’email
+            </button>
+        </form>
+        <button onclick="document.getElementById('verify-modal').classList.add('hidden')"
+            class="text-sm text-gray-500 hover:underline">Fermer</button>
+    </div>
+</div>
+@endif
 <x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}

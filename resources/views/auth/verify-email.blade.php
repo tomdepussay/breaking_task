@@ -31,11 +31,13 @@
             </button>
         </form>
 
-        <form method="POST" action="{{ route('logout') }}">
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Se déconnecter
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
-            <button type="submit" class="text-sm text-gray-500 hover:underline">
-                Se déconnecter
-            </button>
         </form>
+
     </div>
 </x-guest-layout>

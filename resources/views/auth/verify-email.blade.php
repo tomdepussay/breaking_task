@@ -31,8 +31,11 @@
             </button>
         </form>
 
-        <a href="{{ route('logout') }}" class="inline-block text-sm text-gray-500 hover:underline mt-2">
-            Se déconnecter
-        </a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="text-sm text-gray-500 hover:underline">
+                Se déconnecter
+            </button>
+        </form>
     </div>
 </x-guest-layout>

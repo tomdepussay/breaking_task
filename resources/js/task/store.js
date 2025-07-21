@@ -37,11 +37,11 @@ document.getElementById('createTask').addEventListener('click', function (e) {
             modal.style.display = 'none';
 
             let column_id = data.column_id;
-            
             reloadColumn(column_id);
             reloadDayCalendar(project_id);
             reloadWeekCalendar(project_id);
             reloadMonthCalendar(project_id);
+            window.location.reload();
         })
         .catch(error => {
             console.log(error);

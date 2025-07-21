@@ -53,6 +53,7 @@ class CalendarController extends Controller
 
             return $deadline->between($startDate, $endDate);
         });
+
         return view('project.view.calendar.threedays-view', [
             'project' => $project,
             'date' => $date,

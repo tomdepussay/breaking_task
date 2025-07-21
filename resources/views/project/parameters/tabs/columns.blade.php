@@ -16,15 +16,7 @@
 <div class="modal" id="editColumn"></div>
 <div class="modal" id="deleteColumn"></div>
 
-@vite([
-    'resources/js/column/create.js',
-    'resources/js/column/store.js',
-    'resources/js/column/edit.js',
-    'resources/js/column/update.js',
-    'resources/js/column/delete.js',
-    'resources/js/column/destroy.js',
-    'resources/js/column/sort.js',
-])
+@vite('resources/js/pages/column.js')
 
 <script>
     const columnRoutes = {

@@ -29,4 +29,4 @@
     </div>
 </div>
 
-@vite('resources/js/project/store.js')
+@vite('resources/js/pages/project-create.js')

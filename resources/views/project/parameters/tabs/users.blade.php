@@ -28,10 +28,4 @@
     };
 </script>
 
-@vite([
-    'resources/js/project/parameters/users/reload.js',
-    'resources/js/project/parameters/users/search.js',
-    'resources/js/project/parameters/users/store.js',
-    'resources/js/project/parameters/users/delete.js',
-    'resources/js/project/parameters/users/destroy.js',
-])
+@vite('resources/js/pages/parameters.js')

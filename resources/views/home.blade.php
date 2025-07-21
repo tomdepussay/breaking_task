@@ -19,10 +19,12 @@
 
         <header class="w-full border-b border-gray-300">
             <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-                <div class="text-2xl font-title text-dark">
-                    <x-application-logo class="inline-block w-10 h-10" />
-                    Breaking Task
-                </div>
+            <div class="flex items-center gap-2 text-2xl font-title text-dark">
+                <x-application-logo class="w-8 h-8" />
+                <span class="font-semibold tracking-wide">Breaking Task</span>
+            </div>
+
+
                 @if (Route::has('login'))
                     <nav class="flex items-center gap-4 text-sm">
                         @auth

@@ -16,14 +16,7 @@
 <div class="modal" id="editPriority"></div>
 <div class="modal" id="deletePriority"></div>
 
-@vite([
-    'resources/js/priority/create.js',
-    'resources/js/priority/store.js',
-    'resources/js/priority/edit.js',
-    'resources/js/priority/update.js',
-    'resources/js/priority/delete.js',
-    'resources/js/priority/destroy.js',
-])
+@vite('resources/js/pages/priority.js')
 
 <script>
     const prioritiesRoutes = {

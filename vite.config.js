@@ -22,6 +22,8 @@ export default defineConfig({
                 "resources/js/pages/project-create.js",
                 "resources/js/pages/dashboard.js",
                 "resources/js/pages/parameters.js",
+                "resources/js/pages/column.js",
+                "resources/js/pages/priorities.js",
             ],
             refresh: true,
         }),

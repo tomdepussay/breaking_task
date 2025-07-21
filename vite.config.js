@@ -24,6 +24,7 @@ export default defineConfig({
                 "resources/js/pages/parameters.js",
                 "resources/js/pages/column.js",
                 "resources/js/pages/priorities.js",
+                "resources/js/pages/category.js",
             ],
             refresh: true,
         }),

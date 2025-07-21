@@ -4,30 +4,41 @@ use Carbon\Carbon;
 @endphp
 
 <div data-calendar="week" class="calendar-view" data-current-date="{{ $startOfWeek->format('Y-m-d') }}">
-    <h2 class="text-xl font-semibold">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">
         Semaine du {{ $startOfWeek->format('d/m/Y') }} au {{ $endOfWeek->format('d/m/Y') }}
     </h2>
 
-    <div class="flex justify-between my-2">
-        <button id="prevWeek" class="px-2 py-1 border rounded">‹</button>
-        <button id="nextWeek" class="px-2 py-1 border rounded">›</button>
+    <div class="flex gap-2 my-2">
+        <button id="prevWeek" class="px-3 py-1 border-2 border-primaire rounded-lg text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
+            ‹
+        </button>
+        <button id="nextWeek" class="px-3 py-1 border-2 border-primaire rounded-lg text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
+            ›
+        </button>
     </div>
 
-    <div class="grid grid-cols-7 gap-2 mt-4">
+    <div class="grid grid-cols-7 gap-1 mt-4 border-t border-gray-300 text-center">
         @foreach(CarbonPeriod::create($startOfWeek, $endOfWeek) as $date)
-            <div class="h-48 p-2 bg-gray-100 rounded overflow-auto">
-                <div class="font-bold">{{ ucfirst($date->locale('fr')->isoFormat('dddd D MMM')) }}</div>
+            @php
+                $isToday = $date->format('Y-m-d') === date('Y-m-d');
+                $dayTasks = $weekTasks->filter(function ($task) use ($date) {
+                    if (!$task->deadline_at) return false;
 
-                @php
-                    $dateStr = $date->format('Y-m-d');
-                    $dayTasks = $weekTasks->filter(fn($task) => substr($task->deadline_at, 0, 10) === $dateStr);
-                @endphp
+                    $taskDate = Carbon::parse($task->deadline_at)->timezone('Europe/Paris');
+                    $currentDate = $date->copy()->timezone('Europe/Paris');
 
-                @foreach($dayTasks as $task)
-                    <div class="mt-1 text-xs bg-black text-white p-1 rounded shadow">
-                        {{ $task->name }}
-                    </div>
-                @endforeach
+                    return $taskDate->isSameDay($currentDate);
+                });
+            @endphp
+            <div class="h-48 p-3 rounded flex flex-col border border-gray-300 {{ $isToday ? 'bg-primaire text-white shadow-lg border-primaire' : 'bg-white text-gray-800' }}">
+                <div class="font-bold mb-2 text-left sticky top-0 bg-inherit z-10">
+                    {{ ucfirst($date->locale('fr')->isoFormat('dddd D MMM')) }}
+                </div>
+                <div class="overflow-y-auto flex-1">
+                    @foreach($dayTasks as $task)
+                        @include('task/show/calendar', ['task' => $task])
+                    @endforeach
+                </div>
             </div>
         @endforeach
     </div>

@@ -47,8 +47,13 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('task')->name('task.')->group(function () {
+        Route::get('/show', [TaskController::class, 'show'])->name('show');
         Route::get('/create', [TaskController::class, 'create'])->name('create');
         Route::post('/store', [TaskController::class, 'store'])->name('store');
+        Route::get('/edit', [TaskController::class, 'edit'])->name('edit');
+        Route::post('/update', [TaskController::class, 'update'])->name('update');
+        Route::get('/delete', [TaskController::class, 'delete'])->name('delete');
+        Route::post('/destroy', [TaskController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('column')->name('column.')->group(function () {

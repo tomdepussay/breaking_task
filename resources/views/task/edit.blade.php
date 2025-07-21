@@ -1,29 +1,28 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 <div class="modal-container">
     <div class="modal-header">
-        <p class="modal-title">Ajouter une tâche</p>
-        <button class="modal-close" data-modal="createTask">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-            </svg>
+        <p class="modal-title">Modifier la tâche : <span class="text-gray-800 font-bold">{{ $task->name }}</span></p>
+        <button class="modal-close" data-modal="editTask">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
     </div>
     <div class="modal-content">
-        <form action="" id="createTaskForm">
+        <form action="" id="editTaskForm">
             <!-- Name -->
             <div class="flex flex-col gap-2">
                 <label for="name">Nom :</label>
-                <input value="{{ $name }}" class="rounded" type="text" name="name" id="name">
+                <input class="rounded" type="text" name="name" id="name" autocomplete="off" value="{{ $task->name }}">
             </div>
             <!-- Description -->
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2 mt-2">
                 <label for="name">Description :</label>
-                <textarea class="rounded h-24 resize-none" type="text" name="description" id="description"></textarea>
+                <textarea class="rounded p-2 h-24 resize-none" name="description" id="description" autocomplete="off">{{ $task->description }}</textarea>
             </div>
             <!-- Column -->
-            <div class="flex flex-col gap-2">
+             <div class="flex flex-col gap-2">
                 <label for="column_id">Colonne :</label>
                 <select name="column_id" id="column_id" class="rounded">
                     @foreach($columns as $column)
@@ -36,10 +35,10 @@
             <!-- Category -->
             <div class="flex flex-col gap-2">
                 <label for="category_id">Catégorie :</label>
-                <select name="category_id" id="category_id" class="rounded">
+                <select name="category_id" id="category_id" class="rounded" >
                     <option value="" disabled selected>Choisir une catégorie</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" {{ $category->id == $task->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -50,16 +49,16 @@
                     <select name="priority_id" id="priority_id" class="rounded">
                         <option value="" disabled selected>Choisir une priorité</option>
                         @foreach ($priorities as $priority)
-                            <option value="{{ $priority->id }}">{{ $priority->name }}</option>
+                            <option value="{{ $priority->id }}" {{ $priority->id == $task->priority_id ? 'selected' : '' }}>{{ $priority->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <!-- Due date -->
                 <div class="flex flex-col gap-2 w-1/2">
-                    <label for="due_date">Date d'échéance :</label>
+                    <label for="deadline_at">Date d'échéance :</label>
                     <div class="relative">
-                        <input class="rounded w-full pr-10" type="date" name="due_date" id="due_date">
-                        <button type="button" onclick="document.getElementById('due_date').value = ''"
+                        <input class="rounded w-full pr-10" type="date" name="deadline_at" id="deadline_at" value="{{ $task->deadline_at ? Carbon::parse($task->deadline_at)->format('Y-m-d') : '' }}" autocomplete="off">
+                        <button type="button" onclick="document.getElementById('deadline_at').value = ''"
                             class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-red-500">
                             ✖
                         </button>
@@ -69,11 +68,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn-store-task bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">
-            Ajouter une tâche
-        </button>
-        <button type="button" class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white" data-modal="createTask">
-            Fermer
-        </button>
+        <button data-task-id="{{ $task->id }}" class="btn-update-task bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">Modifier la tâche</button>
+        <button class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white" data-modal="editTask">Fermer</button>
     </div>
 </div>

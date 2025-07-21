@@ -35,15 +35,5 @@
     </div>
 </li>
 
-
-
-
 <div class="modal" id="editTask"></div>
 <div class="modal" id="deleteTask"></div>
-
-@vite ([
-    'resources/js/task/edit.js',
-    'resources/js/task/update.js',
-    'resources/js/task/delete.js',
-    'resources/js/task/destroy.js'
-])

@@ -22,8 +22,6 @@ window.initDayCalendarNavigation = function (projectId) {
             })
             .then((html) => {
                 container.innerHTML = html;
-
-                // Rebind navigation after reload
                 window.initDayCalendarNavigation(projectId);
             })
             .catch(console.error);
@@ -49,6 +47,57 @@ window.initDayCalendarNavigation = function (projectId) {
         reload(currentDate);
     };
 };
+
+window.initThreeDaysCalendarNavigation = function (projectId) {
+    const container = document.getElementById("threeDaysCalendarContainer");
+    if (!container) return;
+
+    const calendar = container.querySelector('[data-calendar="threedays"]');
+    if (!calendar) return;
+
+    const prevBtn = calendar.querySelector('#prevThreeDays');
+    const nextBtn = calendar.querySelector('#nextThreeDays');
+
+    if (!prevBtn || !nextBtn) return;
+
+    function reload(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+
+        fetch(`/calendar/threedays-view/${projectId}?date=${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`)
+            .then(res => {
+                if (!res.ok) throw new Error("Erreur lors du chargement du calendrier 3 jours");
+                return res.text();
+            })
+            .then(html => {
+                container.innerHTML = html;
+                window.initThreeDaysCalendarNavigation(projectId);
+            })
+            .catch(console.error);
+    }
+
+    prevBtn.onclick = () => {
+        const year = parseInt(calendar.dataset.year, 10);
+        const month = parseInt(calendar.dataset.month, 10);
+        const day = parseInt(calendar.dataset.day, 10);
+        const currentDate = new Date(year, month - 1, day);
+
+        currentDate.setDate(currentDate.getDate() - 3);
+        reload(currentDate);
+    };
+
+    nextBtn.onclick = () => {
+        const year = parseInt(calendar.dataset.year, 10);
+        const month = parseInt(calendar.dataset.month, 10);
+        const day = parseInt(calendar.dataset.day, 10);
+        const currentDate = new Date(year, month - 1, day);
+
+        currentDate.setDate(currentDate.getDate() + 3);
+        reload(currentDate);
+    };
+};
+
 
 
 

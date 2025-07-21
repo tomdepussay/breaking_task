@@ -34,6 +34,33 @@ class CalendarController extends Controller
     }
 
     /**
+     * Display the three days view for a given project,
+     * handling the date via a query parameter.
+     */
+    public function threeDaysView(Project $project, Request $request)
+    {
+        $project->load('tasks');
+        $dateParam = $request->query('date', now()->toDateString());
+        $date = Carbon::parse($dateParam);
+        $startDate = $date->copy()->startOfDay();
+        $endDate = $date->copy()->addDays(2)->endOfDay();
+        $threeDaysTasks = $project->tasks->filter(function ($task) use ($startDate, $endDate) {
+            if (! $task->deadline_at) {
+                return false;
+            }
+
+            $deadline = Carbon::parse($task->deadline_at)->startOfDay();
+
+            return $deadline->between($startDate, $endDate);
+        });
+        return view('project.view.calendar.threedays-view', [
+            'project' => $project,
+            'date' => $date,
+            'threeDaysTasks' => $threeDaysTasks,
+        ]);
+    }
+
+    /**
      * Display the month view partial for a given project,
      * handling the year and month via query parameters.
      */

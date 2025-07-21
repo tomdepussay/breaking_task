@@ -17,7 +17,7 @@ use Carbon\Carbon;
         </button>
     </div>
 
-    <div class="grid grid-cols-7 gap-1 mt-4 border-t border-gray-300 text-center">
+    <div class="flex flex-col gap-1 mt-4 border-t border-gray-300 text-center md:grid grid-cols-7">
         @foreach(CarbonPeriod::create($startOfWeek, $endOfWeek) as $date)
             @php
                 $isToday = $date->format('Y-m-d') === date('Y-m-d');

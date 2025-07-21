@@ -1,4 +1,4 @@
-<ul class="mt-6 mx-6 grid grid-cols-3 gap-3">
+<ul class="mt-6 mx-6 flex flex-col md:grid md:grid-cols-3 md:gap-3">
     @forelse ($projects as $project)
         <a href="{{ route('project.show', ['id' => $project->id]) }}" class="group p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex items-center justify-between cursor-pointer">
             <h3 class="flex items-center gap-2 font-semibold">

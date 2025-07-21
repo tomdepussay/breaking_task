@@ -1,4 +1,4 @@
-<div class="flex justify-evenly items-center gap-2 mb-4 text-lg">
+<div class="flex justify-evenly items-center gap-2 mb-4 text-lg overflow-x-scroll md:overflow-x-auto">
     @if($project->owner_id === Auth::id())
         <button data-tab="general" class="tab p-2 px-4 rounded hover:bg-gray-100/50 underline-offset-4 {{ $currentTab === 'general' ? 'underline bg-gray-100/50' : '' }}">
             Paramètre du projet

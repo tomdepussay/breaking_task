@@ -18,9 +18,9 @@
         </button>
     </div>
 
-    <div class="grid grid-cols-7 gap-1 mt-4 text-center border-t border-gray-300">
+    <div class="grid grid-cols-3 gap-1 mt-4 text-center border-t border-gray-300 md:grid-cols-7">
         @foreach(['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as $dayName)
-            <div class="font-bold text-gray-700 border-b border-gray-300 py-1">{{ $dayName }}</div>
+            <div class="font-bold text-gray-700 border-b border-gray-300 py-1 hidden md:block">{{ $dayName }}</div>
         @endforeach
 
         @for ($i = 0; $i < $firstDayOfWeek; $i++)

@@ -1,5 +1,5 @@
-<div data-view="table" class="views hidden px-6 py-4">
-    <div class="overflow-hidden rounded-lg border-gray-300">
+<div data-view="table" class="views hidden py-4 md:px-6">
+    <div class="overflow-scroll rounded-lg border-gray-300 md:overflow-hidden">
         <table class="min-w-full">
             <thead class="bg-gray-200">
                 <tr>

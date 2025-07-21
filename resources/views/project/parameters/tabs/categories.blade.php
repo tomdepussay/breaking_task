@@ -16,14 +16,7 @@
 <div class="modal" id="editCategory"></div>
 <div class="modal" id="deleteCategory"></div>
 
-@vite([
-    'resources/js/category/create.js',
-    'resources/js/category/store.js',
-    'resources/js/category/edit.js',
-    'resources/js/category/update.js',
-    'resources/js/category/delete.js',
-    'resources/js/category/destroy.js',
-])
+@vite(['resources/js/pages/category.js'])
 
 <script>
     const categoriesRoutes = {

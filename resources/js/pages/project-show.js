@@ -6,7 +6,6 @@ import '../task/update.js';
 import '../task/delete.js';
 import '../task/destroy.js';
 
-
 import '../column/reload.js';
 
 import '../project/view.js';

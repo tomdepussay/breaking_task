@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IcalSynchronizationController;
 
 Route::get('/', function () {
     return view('home');
@@ -44,6 +45,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/{id}', [ProjectController::class, 'show'])->name('show');
         Route::get('/{id}/parameters', [ProjectController::class, 'parameters'])->name('parameters');
+        Route::get('/{project}/calendar.ics', [IcalSynchronizationController::class, 'export'])
+        ->name('ical');
     });
 
     Route::prefix('task')->name('task.')->group(function () {

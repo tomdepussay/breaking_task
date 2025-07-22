@@ -40,7 +40,11 @@
                         </svg>
                         Calendrier
                     </button>
+                    <a href="{{ route('project.ical', $project) }}" class="items-center gap-2 p-2 rounded bg-black-600 hover:bg-red-100">
+                        <span>Télécharger iCal</span>
+                    </a>
                 </div>
+
             </div>
             <div class="flex justify-between items-center gap-6">
                 <a href="{{ route('project.parameters', ['id' => $project->id]) }}" class="flex flex-col justify-center items-center gap-2 p-2 rounded-full bg-gray-100/50 hover:bg-gray-100 font-semibold w-min dark:bg-gray-700 dark:hover:bg-gray-600">

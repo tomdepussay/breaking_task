@@ -1,6 +1,6 @@
 <?php $currentView = 'calendar'; ?>
 
-<div data-view="calendar" class="views hidden p-6">
+<div data-view="calendar" class="views hidden p-0 pt-6 md:p-6">
     <div class="flex justify-between items-center mb-4">
         <div class="flex gap-2">
             <!-- Hidden element to ensure Tailwind includes 'btn-active' styles in the build -->
@@ -11,7 +11,7 @@
             <button data-view="month" class="view-btn btn-inactive px-3 py-1 rounded">Mois</button>
         </div>
     </div>
-    <div data-view="calendar" class="views hidden p-6" data-project-id="{{ $project->id }}">
+    <div data-view="calendar" class="views hidden md:p-6" data-project-id="{{ $project->id }}">
         <div id="dayCalendarContainer"></div>
         <div id="threeDaysCalendarContainer"></div>
         <div id="weekCalendarContainer"></div>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header" class="p-0">
-        <div class="flex justify-between items-center">
-            <div class="flex justify-center items-center gap-6">
+        <div class="flex flex-col justify-between items-start md:flex-row gap-2 md:items-start">
+            <div class="flex flex-col justify-end items-start gap-6 md:flex-row md:justify-center">
                 <div>
                     <a href="{{ route('dashboard') }}"
                         class="flex items-center justify-start px-2 py-1 w-fit gap-1 text-sm rounded opacity-70 hover:opacity-90 hover:bg-gray-100">

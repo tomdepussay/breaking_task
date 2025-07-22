@@ -20,7 +20,7 @@
     <body class="bg-light text-text font-base flex p-6 lg:p-8 items-center lg:justify-center flex-col">
 
         <header class="w-full border-b border-gray-300">
-            <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col items-center justify-between md:flex-row">
             <div class="flex items-center gap-2 text-2xl font-title text-dark">
                 <x-application-logo class="w-8 h-8" />
                 <span class="font-semibold tracking-wide">Breaking Task</span>
@@ -28,7 +28,7 @@
 
 
                 @if (Route::has('login'))
-                    <nav class="flex items-center gap-4 text-sm">
+                    <nav class="flex items-center gap-4 text-sm mt-4 md:mt-0">
                         @auth
                             <a href="{{ url('/dashboard') }}"
                                 class="px-4 py-2 text-white bg-secondaire hover:bg-dark rounded-md transition">

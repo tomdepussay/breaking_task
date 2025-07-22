@@ -52,7 +52,7 @@
             </a>
 
             <x-primary-button class="ms-4">
-                {{ __('S'nscription') }}
+                {{ __("S'nscription") }}
             </x-primary-button>
         </div>
     </form>

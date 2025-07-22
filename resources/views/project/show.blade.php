@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header" class="p-0">
-        <div class="flex flex-col justify-between items-start md:flex-row gap-2 md:items-start">
+        <div class="flex flex-col justify-between items-start md:flex-row gap-2 md:items-center">
             <div class="flex flex-col justify-end items-start gap-6 md:flex-row md:justify-center">
                 <div>
                     <a href="{{ route('dashboard') }}"
@@ -19,24 +19,32 @@
                     </div>
                 </div>
                 <div class="flex justify-between items-center gap-6 font-semibold">
-                    <button data-view="kanban" class="change-view flex flex-col justify-center items-center gap-2 p-2 rounded bg-gray-100/50 underline hover:bg-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-kanban-icon lucide-square-kanban"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/></svg>
+                    <button data-view="kanban" class="change-view flex flex-col justify-center items-center gap-2 p-2 rounded bg-primaire/10 text-primaire hover:bg-primaire/20 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-kanban">
+                            <rect width="18" height="18" x="3" y="3" rx="2"/>
+                            <path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/>
+                        </svg>
                         Kanban
                     </button>
-                    <button data-view="table" class="change-view flex flex-col justify-center items-center gap-2 p-2 rounded bg-gray-100/50 hover:bg-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-icon lucide-table"><path d="M12 3v18"/><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>
+
+                    <button data-view="table" class="change-view flex flex-col justify-center items-center gap-2 p-2 rounded bg-gray-100/50 text-gray-700 hover:bg-gray-200 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table">
+                            <path d="M12 3v18"/><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/>
+                        </svg>
                         Tableau
                     </button>
-                    <button data-view="calendar" class="change-view flex flex-col justify-center items-center gap-2 p-2 rounded bg-gray-100/50 hover:bg-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+
+                    <button data-view="calendar" class="change-view flex flex-col justify-center items-center gap-2 p-2 rounded bg-gray-100/50 text-gray-700 hover:bg-gray-200 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar">
+                            <path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>
+                        </svg>
                         Calendrier
                     </button>
                 </div>
             </div>
             <div>
-                <a href="{{ route('project.parameters', ['id' => $project->id]) }}" class="flex flex-col justify-center items-center gap-2 p-2 rounded bg-gray-100/50 hover:bg-gray-100 font-semibold underline">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Paramètres
+                <a href="{{ route('project.parameters', ['id' => $project->id]) }}" class="flex flex-col justify-center items-center gap-2 p-2 rounded-full bg-gray-100/50 hover:bg-gray-100 font-semibold">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="teal" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
                 </a>
             </div>
         </div>

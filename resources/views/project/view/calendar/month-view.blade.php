@@ -10,10 +10,10 @@
     </h2>
 
     <div class="flex gap-2 my-2">
-        <button id="prevMonth" class="px-3 py-1 border-2 border-primaire rounded-lg text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
+        <button id="prevMonth" class="px-3 py-1 border-2 border-primaire rounded-full text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
             ‹
         </button>
-        <button id="nextMonth" class="px-3 py-1 border-2 border-primaire rounded-lg text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
+        <button id="nextMonth" class="px-3 py-1 border-2 border-primaire rounded-full text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
             ›
         </button>
     </div>

@@ -35,7 +35,7 @@
                 </a>
             @endif
 
-            <x-primary-button class="mt-4 self-center">
+            <x-primary-button class="mt-4 self-center bg-secondaire/80 hover:bg-secondaire">
                 {{ __('Se connecter') }}
             </x-primary-button>
         </div>

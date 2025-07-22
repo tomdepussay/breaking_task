@@ -9,15 +9,15 @@ use Carbon\Carbon;
     </h2>
 
     <div class="flex gap-2 my-2">
-        <button id="prevWeek" class="px-3 py-1 border-2 border-primaire rounded-lg text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
+        <button id="prevWeek" class="px-3 py-1 border-2 border-primaire rounded-full text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
             ‹
         </button>
-        <button id="nextWeek" class="px-3 py-1 border-2 border-primaire rounded-lg text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
+        <button id="nextWeek" class="px-3 py-1 border-2 border-primaire rounded-full text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
             ›
         </button>
     </div>
 
-    <div class="flex flex-col gap-1 mt-4 border-t border-gray-300 text-center md:grid grid-cols-7">
+    <div class="flex flex-col gap-1 mt-4 border-gray-300 text-center md:grid grid-cols-7 min-h-[300px]">
         @foreach(CarbonPeriod::create($startOfWeek, $endOfWeek) as $date)
             @php
                 $isToday = $date->format('Y-m-d') === date('Y-m-d');
@@ -30,7 +30,7 @@ use Carbon\Carbon;
                     return $taskDate->isSameDay($currentDate);
                 });
             @endphp
-            <div class="h-48 p-3 rounded flex flex-col border border-gray-300 {{ $isToday ? 'bg-primaire text-white shadow-lg border-primaire' : 'bg-white text-gray-800' }}">
+            <div class="p-3 rounded flex flex-col border border-gray-300 {{ $isToday ? 'bg-primaire text-white shadow-lg border-primaire' : 'bg-white text-gray-800' }}">
                 <div class="font-bold mb-2 text-left sticky top-0 bg-inherit z-10">
                     {{ ucfirst($date->locale('fr')->isoFormat('dddd D MMM')) }}
                 </div>

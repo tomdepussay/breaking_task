@@ -1,7 +1,7 @@
 <div id="users" class="tab-container {{ $currentTab === 'users' ? '' : 'hidden' }}">
     <div class="">
         <div class="my-5">
-            <button type="button" data-modal="createUsers" class="modal-open  bg-gray-700 text-white px-3 py-2 rounded shadow-sm hover:shadow-lg">
+            <button type="button" data-modal="createUsers" class="modal-open bg-dark text-white px-3 py-2 rounded shadow-sm hover:shadow-lg">
                 Ajouter un utilisateur
             </button>
         </div>

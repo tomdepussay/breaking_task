@@ -15,7 +15,7 @@
     </div>
     </div>
     <div class="modal-footer">
-        <button data-task-id="{{ $task->id }}" class="btn-destroy-task bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">Supprimer la tâche</button>
-        <button class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white" data-modal="deleteTask">Fermer</button>
+        <button data-task-id="{{ $task->id }}" class="btn-destroy-task transition-colors bg-secondaire/80 hover:bg-secondaire px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">Supprimer la tâche</button>
+        <button class="modal-close px-3 py-2 rounded transition-colors bg-dark/80 hover:bg-dark text-white" data-modal="deleteTask">Fermer</button>
     </div>
 </div>

@@ -21,10 +21,10 @@
     </div>
 
     <div class="modal-footer">
-        <button id="btnStoreProject" class="bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">
+        <button id="btnStoreProject" class="bg-dark px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">
             Ajouter un projet
         </button>
-        <button class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white"
+        <button class="modal-close px-3 py-2 rounded bg-secondaire text-white"
             data-modal="createProject">Fermer</button>
     </div>
 </div>

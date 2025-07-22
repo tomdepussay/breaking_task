@@ -53,10 +53,10 @@
 
         <section class="py-20 bg-light">
             <div class="max-w-6xl mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-5xl font-title text-dark mb-6 leading-tight">
+                <h1 class="text-4xl md:text-5xl font-title text-dark mb-12 leading-tight">
                     Organisez vos projets <span class="text-secondaire">comme jamais auparavant</span>
                 </h1>
-                <p class="text-lg text-text font-important mb-8">
+                <p class="text-lg text-text font-important mb-10 max-w-lg text-center m-auto">
                     Gérez vos tâches, votre équipe et vos délais facilement avec Kanboard, la solution de gestion de projet visuelle et intuitive.
                 </p>
                 @guest

@@ -1,7 +1,7 @@
 <div id="categories" class="tab-container {{ $currentTab === 'categories' ? '' : 'hidden' }}">
     <div class="">
         <div class="my-5">
-            <button type="button" data-project-id="{{ $project->id }}" class="btn-create-category  bg-gray-700 text-white px-3 py-2 rounded shadow-sm hover:shadow-lg">
+            <button type="button" data-project-id="{{ $project->id }}" class="btn-create-category  bg-dark text-white px-3 py-2 rounded shadow-sm hover:shadow-lg">
                 Ajouter une catégorie
             </button>
         </div>

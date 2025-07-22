@@ -13,15 +13,15 @@
     </h2>
 
     <div class="flex gap-2 mb-4">
-        <button id="prevThreeDays" class="px-3 py-1 border-2 border-primaire rounded-lg text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
+        <button id="prevThreeDays" class="px-3 py-1 border-2 border-primaire rounded-full text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
             ‹
         </button>
-        <button id="nextThreeDays" class="px-3 py-1 border-2 border-primaire rounded-lg text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
+        <button id="nextThreeDays" class="px-3 py-1 border-2 border-primaire rounded-full text-primaire font-semibold shadow-sm hover:bg-primaire hover:text-white transition-colors duration-300 ease-in-out">
             ›
         </button>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 min-h-[300px]">
         @foreach($threeDaysPeriod as $day)
             @php
                 $formattedDate = $day->format('Y-m-d');
@@ -32,7 +32,7 @@
                 $isToday = $formattedDate === now()->format('Y-m-d');
             @endphp
 
-            <div class="bg-gray-100 rounded p-4 shadow {{ $isToday ? 'border-2 border-primaire' : '' }}">
+            <div class="bg-white rounded p-4 shadow {{ $isToday ? 'border-2 border-primaire' : '' }}">
                 <div class="text-sm font-bold mb-2 text-gray-700">
                     {{ ucfirst($day->locale('fr_FR')->isoFormat('dddd D MMMM')) }}
                 </div>

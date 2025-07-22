@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="modal-content">
-        <p>Êtes-vous sûr de vouloir supprimer l'utilisateur <span class="text-gray-800 font-bold">{{ $user->firstname }} {{ $user->lastname }}</span> du projet <span class="text-gray-800 font-bold">{{ $project->name }}</span> ?</p>
+        <p>Êtes-vous sûr de vouloir supprimer l'utilisateur <span class="text-gray-800 font-bold dark:text-white">{{ $user->firstname }} {{ $user->lastname }}</span> du projet <span class="text-gray-800 font-bold dark:text-white">{{ $project->name }}</span> ?</p>
     </div>
     <div class="modal-footer">
         <button data-user-id="{{ $user->id }}" class="btn-destroy-users bg-red-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">Oui, supprimer l'utilisateur du projet</button>

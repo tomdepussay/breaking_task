@@ -17,10 +17,14 @@ document.querySelectorAll('.change-view').forEach((button) => {
             el.classList.toggle('bg-primaire/10', isActive);
             el.classList.toggle('text-primaire', isActive);
             el.classList.toggle('hover:bg-primaire/20', isActive);
+            el.classList.toggle('dark:bg-primaire/10', isActive);
+            el.classList.toggle('dark:text-primaire', isActive);
 
+            el.classList.toggle('dark:bg-gray-700', !isActive);
             el.classList.toggle('bg-gray-100/50', !isActive);
             el.classList.toggle('text-gray-700', !isActive);
             el.classList.toggle('hover:bg-gray-200', !isActive);
+            el.classList.toggle('dark:text-white', !isActive);
         });
     });
 });

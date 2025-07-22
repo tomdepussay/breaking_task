@@ -8,7 +8,7 @@
     <div class="modal-content">
 
         <div class="flex justify-start items-center gap-2">
-            <input type="text" name="search" id="search" class="rounded w-full" placeholder="Rechercher un utilisateur">
+            <input type="text" name="search" id="search" class="rounded w-full dark:bg-gray-800 dark:text-white" placeholder="Rechercher un utilisateur">
             <button type="button" id="btn-search" class="bg-gray-700 text-white px-3 py-2 rounded shadow-sm hover:shadow-lg">
                 Rechercher
             </button>

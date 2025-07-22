@@ -40,17 +40,31 @@
                         </svg>
                         Calendrier
                     </button>
-                    <a href="{{ route('project.ical', $project) }}" class="items-center gap-2 p-2 rounded bg-black-600 hover:bg-gray-100 dark:text-white dark:bg-black-700 dark:hover:bg-gray-600 text-gray-800 font-semibold flex justify-center items-center transition-all">
-                        <span>Télécharger iCal</span>
-                    </a>
                 </div>
 
             </div>
             <div class="flex justify-between items-center gap-6">
-                <a href="{{ route('project.parameters', ['id' => $project->id]) }}" class="flex flex-col justify-center items-center gap-2 p-2 rounded-full bg-gray-100/50 hover:bg-gray-100 font-semibold w-min dark:bg-gray-700 dark:hover:bg-gray-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="teal" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                <!-- Bouton Paramètres -->
+                <a href="{{ route('project.parameters', ['id' => $project->id]) }}"
+                class="flex flex-col justify-center items-center gap-2 p-2 rounded-full bg-gray-100/50 hover:bg-gray-100 font-semibold w-min dark:bg-gray-700 dark:hover:bg-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="teal" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
                 </a>
-                <button id="themeToggle" class="flex flex-col justify-center items-center gap-2 p-2 rounded-full bg-gray-100/50 hover:bg-gray-100 font-semibold w-min dark:bg-gray-700 dark:hover:bg-gray-600">
+
+                <!-- Bouton iCal -->
+                <a href="{{ route('project.ical', $project) }}"
+                class="flex flex-col justify-center items-center gap-2 p-2 rounded-full bg-gray-100/50 hover:bg-red-100 font-semibold w-min dark:bg-gray-700 dark:hover:bg-gray-600">
+                    <svg viewBox="0 0 24 24" width="35" height="35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 10V7C20 5.89543 19.1046 5 18 5H6C4.89543 5 4 5.89543 4 7V10M20 10H4M20 10V11.75M4 10V19C4 20.1046 4.89543 21 6 21H12M8 3V7M16 3V7" stroke="teal" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M18 15V21M18 21L15.5 18.5M18 21L20.5 18.5" stroke="teal" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+
+                <!-- Bouton thème -->
+                <button id="themeToggle"
+                        class="flex flex-col justify-center items-center gap-2 p-2 rounded-full bg-gray-100/50 hover:bg-gray-100 font-semibold w-min dark:bg-gray-700 dark:hover:bg-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="teal" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                     </svg>
@@ -87,7 +101,7 @@
 
 </x-app-layout>
 
-<script> 
+<script>
     /* Dark mode handling */
     const html = document.documentElement;
     if (localStorage.theme === 'dark') {

@@ -1,4 +1,9 @@
-<tr class="bg-white">
+<?php use Carbon\Carbon; ?>
+
+<tr
+    class="bg-white"
+    data-search="{{ strtolower($task->name . ' ' . ($task->description ?? '') . ' ' . $column->name . ' ' . ($task->priority->name ?? '') . ' ' . ($task->category->name ?? '')) }}"
+>
     <td class="border px-4 py-2">
         <div class="flex flex-col gap-1">
             <span class="font-semibold">{{ $task->name }}</span>
@@ -19,5 +24,5 @@
     </td>
     <td class="border px-4 py-2">{{ $task->description ?? '–' }}</td>
     <td class="border px-4 py-2">{{ $column->name }}</td>
-    <td class="border px-4 py-2">{{ $task->due_date ? $task->due_date->format('d/m/Y') : '–' }}</td>
+    <td class="border px-4 py-2">{{ $task->deadline_at ? Carbon::parse($task->deadline_at)->format('d/m/Y') : '–' }}</td>
 </tr>

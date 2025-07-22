@@ -29,6 +29,33 @@ window.reloadDayCalendar = function (projectId, date = null) {
         .catch(console.error);
 };
 
+/* Reload Three Days view */
+window.reloadThreeDaysCalendar = function (projectId, date = null) {
+    hideAllCalendarViews();
+
+    const calendar = document.querySelector('[data-calendar="threedays"]');
+    if (!calendar) return;
+
+    const targetDate = date || new Date().toISOString().split('T')[0];
+
+    fetch(`/calendar/threedays-view/${projectId}?date=${targetDate}`)
+        .then(res => {
+            if (!res.ok) throw new Error('Erreur lors du chargement du calendrier trois jours');
+            return res.text();
+        })
+        .then(html => {
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+
+            const newThreeDays = temp.querySelector('[data-calendar="threedays"]');
+            if (newThreeDays) {
+                calendar.replaceWith(newThreeDays);
+                if (window.initThreeDaysCalendarNavigation) window.initThreeDaysCalendarNavigation(projectId);
+            }
+        })
+        .catch(console.error);
+};
+
 /* Reload Week view */
 window.reloadWeekCalendar = function (projectId, year = null, month = null, day = null) {
     hideAllCalendarViews();

@@ -5,7 +5,7 @@ import '../task/edit.js';
 import '../task/update.js';
 import '../task/delete.js';
 import '../task/destroy.js';
-
+import '../task/search.js';
 
 import '../column/reload.js';
 

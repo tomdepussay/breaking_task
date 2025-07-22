@@ -1,16 +1,16 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" class="bg-primaire text-text font-base p-6 ">
+    <form method="POST" action="{{ route('register') }}" class="text-text font-base p-6 ">
         @csrf
 
         <!-- Firstname & Lastname -->
         <div class="flex gap-2">
             <div>
-                <x-input-label for="firstname" :value="__('Firstname')" />
+                <x-input-label for="firstname" :value="__('Prénom')" />
                 <x-text-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus autocomplete="firstname" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
             <div>
-                <x-input-label for="lastname" :value="__('Lastname')" />
+                <x-input-label for="lastname" :value="__('Nom de famille')" />
                 <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="lastname" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -25,7 +25,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Mot de passe')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
@@ -37,7 +37,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input-label for="password_confirmation" :value="__('Confirmer le mot de passe')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
@@ -48,11 +48,11 @@
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('Se connecter') }}
             </a>
 
             <x-primary-button class="ms-4">
-                {{ __('Register') }}
+                {{ __('S'nscription') }}
             </x-primary-button>
         </div>
     </form>

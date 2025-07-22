@@ -1,5 +1,13 @@
 <div data-view="table" class="views hidden py-4 md:px-6">
-    <div class="overflow-scroll rounded-lg border-gray-300 md:overflow-hidden">
+    <div class="overflow-hidden rounded-lg border-gray-300">
+        <div class="mb-4">
+            <input
+                type="text"
+                id="taskSearchInput"
+                placeholder="Rechercher une tâche..."
+                class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primaire"
+            >
+        </div>
         <table class="min-w-full">
             <thead class="bg-gray-200">
                 <tr>

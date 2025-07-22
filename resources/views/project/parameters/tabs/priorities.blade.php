@@ -1,7 +1,7 @@
 <div id="priorities" class="tab-container {{ $currentTab === 'priorities' ? '' : 'hidden' }}">
     <div class="">
         <div class="my-5">
-            <button type="button" data-project-id="{{ $project->id }}" class="btn-create-priority  bg-gray-700 text-white px-3 py-2 rounded shadow-sm hover:shadow-lg">
+            <button type="button" data-project-id="{{ $project->id }}" class="btn-create-priority  bg-dark text-white px-3 py-2 rounded shadow-sm hover:shadow-lg">
                 Ajouter une priorité
             </button>
         </div>

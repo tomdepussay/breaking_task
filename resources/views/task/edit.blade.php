@@ -68,7 +68,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button data-task-id="{{ $task->id }}" class="btn-update-task bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">Modifier la tâche</button>
-        <button class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white" data-modal="editTask">Fermer</button>
+        <button data-task-id="{{ $task->id }}" class="btn-update-task transition-colors bg-secondaire/80 hover:bg-secondaire px-3 py-2 rounded text-white shadow-sm">Modifier la tâche</button>
+        <button class="modal-close px-3 py-2 rounded transition-colors bg-dark/80 hover:bg-dark text-white" data-modal="editTask">Fermer</button>
     </div>
 </div>

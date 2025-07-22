@@ -69,10 +69,10 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn-store-task bg-gray-800 px-3 py-2 rounded text-white shadow-sm hover:shadow-lg">
+        <button type="button" class="btn-store-task transition-colors bg-secondaire/80 hover:bg-secondaire px-3 py-2 rounded text-white shadow-sm">
             Ajouter une tâche
         </button>
-        <button type="button" class="modal-close px-3 py-2 rounded bg-gray-800/90 text-white" data-modal="createTask">
+        <button type="button" class="modal-close px-3 py-2 rounded transition-colors bg-dark/80 hover:bg-dark text-white" data-modal="createTask">
             Fermer
         </button>
     </div>

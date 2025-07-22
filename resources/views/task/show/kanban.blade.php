@@ -19,13 +19,13 @@
 
     {{-- Actions --}}
     <div class="flex items-center gap-2 ml-4 shrink-0">
-        <button class="btn-edit-task text-gray-500 hover:text-blue-600" data-task-id="{{ $task->id }}">
+        <button class="btn-edit-task text-gray-500 hover:text-primaire transition-colors" data-task-id="{{ $task->id }}">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
                 <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
             </svg>
         </button>
-        <button class="btn-delete-task text-gray-500 hover:text-red-600" data-task-id="{{ $task->id }}">
+        <button class="btn-delete-task text-gray-500 hover:text-red-600 transition-colors" data-task-id="{{ $task->id }}">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
                 <path d="M3 6h18"/>

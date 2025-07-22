@@ -6,7 +6,7 @@
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
             <button type="submit"
-                class="mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded shadow">
+                class="mt-2 px-4 py-2 bg-secondaire/80 hover:bg-secondaire text-white rounded shadow">
                 Renvoyer l’email
             </button>
         </form>
@@ -29,7 +29,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex items-center justify-between">
                         <h2 class="text-lg font-bold">Projets</h2>
-                        <button data-modal="createProject" class="modal-open flex items-center gap-2 px-3 py-2 bg-gray-800 text-white rounded shadow-sm hover:shadow-lg">
+                        <button data-modal="createProject" class="modal-open flex items-center gap-2 px-3 py-2 bg-secondaire text-white rounded shadow-sm hover:shadow-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"> <path d="M5 12h14" /> <path d="M12 5v14" /></svg>
                             Ajouter un projet
                         </button>

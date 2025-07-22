@@ -51,8 +51,8 @@
                 {{ __('Se connecter') }}
             </a>
 
-            <x-primary-button class="ms-4">
-                {{ __("S'nscription") }}
+            <x-primary-button class="ms-4 bg-secondaire/80 hover:bg-secondaire">
+                {{ __('S\'inscrire') }}
             </x-primary-button>
         </div>
     </form>

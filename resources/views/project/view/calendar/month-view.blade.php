@@ -36,7 +36,7 @@
                     return substr($task->deadline_at, 0, 10) === $dateStr;
                 });
             @endphp
-            <div class="h-32 p-2 rounded overflow-hidden flex flex-col border border-gray-300 {{ $isToday ? 'bg-primaire text-white shadow-lg border-primaire' : 'bg-white text-gray-800' }} dark:bg-gray-800 dark:text-white">
+            <div class="h-32 p-2 rounded overflow-hidden flex flex-col border border-gray-300 {{ $isToday ? 'bg-primaire text-white shadow-lg border-primaire' : 'bg-white text-gray-800 ' }} dark:bg-gray-800 dark:text-white">
                 <div class="text-sm font-bold mb-1 sticky top-0 bg-inherit z-10 text-left">
                     {{ $day }}
                 </div>

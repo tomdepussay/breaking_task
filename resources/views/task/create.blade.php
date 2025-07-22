@@ -15,17 +15,17 @@
             <!-- Name -->
             <div class="flex flex-col gap-2">
                 <label for="name">Nom :</label>
-                <input value="{{ $name }}" class="rounded" type="text" name="name" id="name">
+                <input value="{{ $name }}" class="rounded dark:bg-gray-800 dark:text-white" type="text" name="name" id="name">
             </div>
             <!-- Description -->
             <div class="flex flex-col gap-2">
                 <label for="name">Description :</label>
-                <textarea class="rounded h-24 resize-none" type="text" name="description" id="description"></textarea>
+                <textarea class="rounded h-24 resize-none dark:bg-gray-800 dark:text-white" type="text" name="description" id="description"></textarea>
             </div>
             <!-- Column -->
             <div class="flex flex-col gap-2">
                 <label for="column_id">Colonne :</label>
-                <select name="column_id" id="column_id" class="rounded">
+                <select name="column_id" id="column_id" class="rounded dark:bg-gray-800 dark:text-white">
                     @foreach($columns as $column)
                         <option value="{{ $column->id }}" {{ $column->id == $id_column ? 'selected' : '' }}>
                             {{ $column->name }}
@@ -36,7 +36,7 @@
             <!-- Category -->
             <div class="flex flex-col gap-2">
                 <label for="category_id">Catégorie :</label>
-                <select name="category_id" id="category_id" class="rounded">
+                <select name="category_id" id="category_id" class="rounded dark:bg-gray-800 dark:text-white">
                     <option value="" disabled selected>Choisir une catégorie</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -47,7 +47,7 @@
                 <!-- Priority -->
                 <div class="flex flex-col gap-2 w-1/2">
                     <label for="priority_id">Priorité :</label>
-                    <select name="priority_id" id="priority_id" class="rounded">
+                    <select name="priority_id" id="priority_id" class="rounded dark:bg-gray-800 dark:text-white">
                         <option value="" disabled selected>Choisir une priorité</option>
                         @foreach ($priorities as $priority)
                             <option value="{{ $priority->id }}">{{ $priority->name }}</option>
@@ -58,7 +58,7 @@
                 <div class="flex flex-col gap-2 w-1/2">
                     <label for="due_date">Date d'échéance :</label>
                     <div class="relative">
-                        <input class="rounded w-full pr-10" type="date" name="due_date" id="due_date">
+                        <input class="rounded dark:bg-gray-800 dark:text-white w-full pr-10" type="date" name="due_date" id="due_date">
                         <button type="button" onclick="document.getElementById('due_date').value = ''"
                             class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-red-500">
                             ✖

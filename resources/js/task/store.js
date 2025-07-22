@@ -38,9 +38,12 @@ document.getElementById('createTask').addEventListener('click', function (e) {
 
             let column_id = data.column_id;
             reloadColumn(column_id);
+
             reloadDayCalendar(project_id);
+            reloadThreeDaysCalendar(project_id);
             reloadWeekCalendar(project_id);
             reloadMonthCalendar(project_id);
+            
             window.location.reload();
         })
         .catch(error => {

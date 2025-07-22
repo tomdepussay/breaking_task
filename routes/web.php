@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('calendar')->name('calendar.')->group(function () {
         Route::get('/day-view/{project}', [CalendarController::class, 'dayView'])->name('day-view');
+        Route::get('/threedays-view/{project}', [CalendarController::class, 'threeDaysView'])->name('threedays-view');
         Route::get('/week-view/{project}', [CalendarController::class, 'weekView'])->name('week-view');
         Route::get('/month-view/{project}', [CalendarController::class, 'monthView'])->name('month-view');
     });

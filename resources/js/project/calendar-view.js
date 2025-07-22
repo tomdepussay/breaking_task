@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Load default view */
     if (defaultView === "day") {
         loadDayView(projectId);
+    } else if (defaultView === "threedays") {
+        loadThreeDaysView(projectId);
     } else if (defaultView === "week") {
         loadWeekView(projectId);
     } else if (defaultView === "month") {
@@ -43,6 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 loadMonthView(projectId);
             } else if (view === "week") {
                 loadWeekView(projectId);
+            } else if (view === "threedays") {
+                loadThreeDaysView(projectId);
             } else if (view === "day") {
                 loadDayView(projectId);
             }
@@ -82,6 +86,37 @@ function loadDayView(projectId, date = null) {
 
             if (window.initDayCalendarNavigation) {
                 window.initDayCalendarNavigation(projectId);
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+/* Load Three Days view */
+function loadThreeDaysView(projectId, date = null) {
+    const container = document.getElementById("threeDaysCalendarContainer");
+    if (!container) {
+        console.error("Three days calendar container not found");
+        return;
+    }
+    const targetDate = date || new Date().toISOString().split("T")[0];
+    fetch(`/calendar/threedays-view/${projectId}?date=${targetDate}`)
+        .then((res) => {
+            if (!res.ok)
+                throw new Error(
+                    "Erreur lors du chargement du calendrier trois jours"
+                );
+            return res.text();
+        })
+        .then((html) => {
+            container.innerHTML = html;
+            container
+                .querySelector('[data-calendar="threedays"]')
+                ?.classList.remove("hidden");
+
+            if (window.initThreeDaysCalendarNavigation) {
+                window.initThreeDaysCalendarNavigation(projectId);
             }
         })
         .catch((error) => {

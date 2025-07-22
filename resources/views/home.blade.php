@@ -73,3 +73,18 @@
         @endif
     </body>
 </html>
+
+<script> 
+    /* Dark mode handling */
+    const html = document.documentElement;
+    if (localStorage.theme === 'dark') {
+        html.classList.add('dark');
+    } else {
+        html.classList.remove('dark');
+    }
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+    html.classList.toggle('dark');
+    localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+</script>

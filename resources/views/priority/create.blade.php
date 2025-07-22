@@ -9,7 +9,7 @@
         <form action="" id="createPriorityForm">
             <div class="flex flex-col gap-2">
                 <label for="name">Nom :</label>
-                <input class="rounded" type="text" name="name" id="name" autocomplete="off">
+                <input class="rounded dark:bg-gray-800 dark:text-white" type="text" name="name" id="name" autocomplete="off">
             </div>
         </form>
     </div>

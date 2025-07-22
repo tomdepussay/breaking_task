@@ -1,20 +1,22 @@
-<li class="p-3 rounded-lg bg-white shadow flex justify-between items-start group hover:shadow-md transition">
+<li class="p-3 rounded-lg bg-white shadow flex justify-between items-start group hover:shadow-md transition dark:bg-gray-800 dark:text-white dark:border dark:border-gray-700">
+    {{-- Avatar de l'utilisateur --}}
+    {{-- Informations de la tâche --}}
     <div class="flex flex-col gap-2 w-full">
         <div class="flex gap-2 flex-wrap">
             @if ($task->priority)
-                <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700 font-medium">
+                <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700 font-medium dark:bg-gray-600 dark:text-white">
                     {{ $task->priority->name }}
                 </span>
             @endif
             @if ($task->category)
-                <span class="text-xs px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 font-medium">
+                <span class="text-xs px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 font-medium dark:bg-indigo-600 dark:text-white">
                     {{ $task->category->name }}
                 </span>
             @endif
         </div>
 
         {{-- Nom de la tâche --}}
-        <p class="text-sm text-gray-800 font-semibold">{{ $task->name }}</p>
+        <p class="text-sm text-gray-800 font-semibold dark:text-gray-200">{{ $task->name }}</p>
     </div>
 
     {{-- Actions --}}

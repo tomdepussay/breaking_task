@@ -11,7 +11,7 @@
     </div>
     <div class="modal-content">
     <div class="modal-content">
-        <p>Êtes-vous sûr de vouloir supprimer la tâche <span class="text-gray-800 font-bold">{{ $task->name }}</span> définitivement ?</p>
+        <p>Êtes-vous sûr de vouloir supprimer la tâche <span class="text-gray-800 font-bold dark:text-white">{{ $task->name }}</span> définitivement ?</p>
     </div>
     </div>
     <div class="modal-footer">

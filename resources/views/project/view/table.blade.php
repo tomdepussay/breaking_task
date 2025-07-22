@@ -5,11 +5,11 @@
                 type="text"
                 id="taskSearchInput"
                 placeholder="Rechercher une tâche..."
-                class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primaire"
+                class="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-white"
             >
         </div>
         <table class="min-w-full">
-            <thead class="bg-gray-200">
+            <thead class="bg-gray-200 dark:bg-gray-800 dark:text-white">
                 <tr>
                     <th class="px-4 py-2 text-left">Titre</th>
                     <th class="px-4 py-2 text-left">Description</th>

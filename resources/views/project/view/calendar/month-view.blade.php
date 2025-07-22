@@ -5,7 +5,7 @@
 @endphp
 
 <div data-calendar="month" class="calendar-view" data-year="{{ $year }}" data-month="{{ $month }}">
-    <h2 class="text-xl font-semibold text-gray-800 mb-4" id="calendarTitle">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white" id="calendarTitle">
         {{ ucfirst($monthName) }} {{ $year }}
     </h2>
 
@@ -20,11 +20,11 @@
 
     <div class="grid grid-cols-3 gap-1 mt-4 text-center border-t border-gray-300 md:grid-cols-7">
         @foreach(['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as $dayName)
-            <div class="font-bold text-gray-700 border-b border-gray-300 py-1 hidden md:block">{{ $dayName }}</div>
+            <div class="font-bold text-gray-700 border-b border-gray-300 py-1 hidden md:block dark:text-gray-300">{{ $dayName }}</div>
         @endforeach
 
         @for ($i = 0; $i < $firstDayOfWeek; $i++)
-            <div class="h-32 border border-gray-300 bg-gray-50"></div>
+            <div class="h-32 border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"></div>
         @endfor
 
         @for ($day = 1; $day <= $daysInMonth; $day++)
@@ -36,7 +36,7 @@
                     return substr($task->deadline_at, 0, 10) === $dateStr;
                 });
             @endphp
-            <div class="h-32 p-2 rounded overflow-hidden flex flex-col border border-gray-300 {{ $isToday ? 'bg-primaire text-white shadow-lg border-primaire' : 'bg-white text-gray-800' }}">
+            <div class="h-32 p-2 rounded overflow-hidden flex flex-col border border-gray-300 {{ $isToday ? 'bg-primaire text-white shadow-lg border-primaire' : 'bg-white text-gray-800 ' }} dark:bg-gray-800 dark:text-white">
                 <div class="text-sm font-bold mb-1 sticky top-0 bg-inherit z-10 text-left">
                     {{ $day }}
                 </div>

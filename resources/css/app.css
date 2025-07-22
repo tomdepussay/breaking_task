@@ -15,10 +15,12 @@
 
     .modal-container {
         @apply bg-white w-full max-w-screen-md rounded-lg shadow-lg;
+        @apply dark:bg-gray-800 dark:text-white;
     }
 
     .modal-header {
         @apply flex justify-between items-center border-b p-4;
+        @apply dark:border-gray-600;
     }
 
     .modal-title {
@@ -31,22 +33,31 @@
 
     .modal-footer {
         @apply flex justify-end gap-2 space-x-2 border-t p-4;
-  }
+        @apply dark:border-gray-600;
+    }
 
     .btn-active {
         @apply bg-primaire text-white;
+        @apply dark:bg-primaire dark:text-white;
     }
 
     .btn-inactive {
         @apply bg-gray-200 text-black;
+        @apply dark:bg-gray-700 dark:text-gray-400;
     }
+
+
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.3s ease-out;
+    animation: fade-in 0.3s ease-out;
 }

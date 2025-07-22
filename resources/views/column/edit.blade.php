@@ -1,6 +1,6 @@
 <div class="modal-container">
     <div class="modal-header">
-        <p class="modal-title">Modifier la colonne : <span class="text-gray-800 font-bold">{{ $column->name }}</span></p>
+        <p class="modal-title">Modifier la colonne : <span class="text-gray-800 font-bold dark:text-white">{{ $column->name }}</span></p>
         <button class="modal-close" data-modal="editColumn">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
@@ -9,7 +9,7 @@
         <form action="" id="editColumnForm">
             <div class="flex flex-col gap-2">
                 <label for="name">Nom :</label>
-                <input class="rounded" type="text" name="name" id="name" autocomplete="off" value="{{ $column->name }}">
+                <input class="rounded dark:bg-gray-800 dark:text-white" type="text" name="name" id="name" autocomplete="off" value="{{ $column->name }}">
             </div>
             <div class="mt-2">
                 <p class="">Automatisation</p>

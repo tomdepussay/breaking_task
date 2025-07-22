@@ -4,7 +4,7 @@ use Carbon\Carbon;
 @endphp
 
 <div data-calendar="week" class="calendar-view" data-current-date="{{ $startOfWeek->format('Y-m-d') }}">
-    <h2 class="text-xl font-semibold text-gray-800 mb-4">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">
         Semaine du {{ $startOfWeek->format('d/m/Y') }} au {{ $endOfWeek->format('d/m/Y') }}
     </h2>
 
@@ -30,7 +30,7 @@ use Carbon\Carbon;
                     return $taskDate->isSameDay($currentDate);
                 });
             @endphp
-            <div class="p-3 rounded flex flex-col border border-gray-300 {{ $isToday ? 'bg-primaire text-white shadow-lg border-primaire' : 'bg-white text-gray-800' }}">
+            <div class="p-3 rounded flex flex-col border border-gray-300 {{ $isToday ? 'bg-primaire text-white shadow-lg border-primaire' : 'bg-white text-gray-800' }} dark:bg-gray-800 dark:text-white">
                 <div class="font-bold mb-2 text-left sticky top-0 bg-inherit z-10">
                     {{ ucfirst($date->locale('fr')->isoFormat('dddd D MMM')) }}
                 </div>

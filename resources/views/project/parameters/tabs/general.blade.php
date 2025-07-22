@@ -2,7 +2,7 @@
     <div class="flex flex-col gap-1">
         <label for="input_project_name">Nom du projet :</label>
         <div class="flex gap-2">
-            <input class="rounded" type="text" id="input_project_name" name="project_name" value="{{ $project->name }}">
+            <input class="rounded dark:bg-gray-800 dark:text-white" type="text" id="input_project_name" name="project_name" value="{{ $project->name }}">
             <button id="btn-update-project" type="button" class="bg-dark text-white px-3 py-2 rounded shadow-sm hover:shadow-lg">
                 Modifier le nom
             </button>

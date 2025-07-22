@@ -31,7 +31,11 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
                         Calendrier
                     </button>
+                    <a href="{{ route('project.ical', $project) }}" class="items-center gap-2 p-2 rounded bg-black-600 hover:bg-red-100">
+                        <span>Télécharger iCal</span>
+                    </a>
                 </div>
+
             </div>
             <div>
                 <a href="{{ route('project.parameters', ['id' => $project->id]) }}" class="flex flex-col justify-center items-center gap-2 p-2 rounded bg-gray-100/50 hover:bg-gray-100 font-semibold underline">

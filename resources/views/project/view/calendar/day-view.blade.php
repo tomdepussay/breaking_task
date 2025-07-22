@@ -3,7 +3,7 @@
 @endphp
 
 <div data-calendar="day" class="calendar-view" data-year="{{ $date->format('Y') }}" data-month="{{ $date->format('m') }}" data-day="{{ $date->format('d') }}">
-    <h2 class="text-xl font-semibold text-gray-800 mb-4">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">
         {{ ucfirst($date->locale('fr_FR')->isoFormat('dddd D MMMM YYYY')) }}
     </h2>
 
@@ -16,7 +16,7 @@
         </button>
     </div>
 
-    <div class="max-h-[400px] overflow-y-auto space-y-3 bg-gray-100 p-4 rounded">
+    <div class="max-h-[400px] overflow-y-auto space-y-3 bg-gray-100 p-4 rounded dark:bg-gray-800 dark:text-white">
         @php
             $tasksForDay = $dayTasks->filter(function ($task) use ($date) {
                 return $task->deadline_at && Carbon::parse($task->deadline_at)->isSameDay($date);

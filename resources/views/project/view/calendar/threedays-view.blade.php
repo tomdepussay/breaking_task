@@ -8,7 +8,7 @@
 @endphp
 
 <div data-calendar="threedays" class="calendar-view" data-year="{{ $date->format('Y') }}" data-month="{{ $date->format('m') }}" data-day="{{ $date->format('d') }}">
-    <h2 class="text-xl font-semibold text-gray-800 mb-4">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 dark:text-white">
         {{ ucfirst($startDate->locale('fr_FR')->isoFormat('dddd D MMMM')) }} – {{ ucfirst($endDate->locale('fr_FR')->isoFormat('dddd D MMMM YYYY')) }}
     </h2>
 
@@ -32,8 +32,8 @@
                 $isToday = $formattedDate === now()->format('Y-m-d');
             @endphp
 
-            <div class="bg-white rounded p-4 shadow {{ $isToday ? 'border-2 border-primaire' : '' }}">
-                <div class="text-sm font-bold mb-2 text-gray-700">
+            <div class="bg-white rounded p-4 shadow {{ $isToday ? 'border-2 border-primaire' : '' }} dark:bg-gray-800 dark:text-white">
+                <div class="text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">
                     {{ ucfirst($day->locale('fr_FR')->isoFormat('dddd D MMMM')) }}
                 </div>
 

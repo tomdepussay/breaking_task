@@ -9,7 +9,7 @@
         <form action="" id="createColumnForm">
             <div class="flex flex-col gap-2">
                 <label for="name">Nom :</label>
-                <input class="rounded" type="text" name="name" id="name" autocomplete="off">
+                <input class="rounded dark:text-white dark:bg-gray-800" type="text" name="name" id="name" autocomplete="off">
             </div>
             <div class="mt-2">
                 <p class="">Automatisation</p>

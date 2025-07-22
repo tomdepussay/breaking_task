@@ -18,7 +18,7 @@
     <input type="hidden" name="project_id" id="project_id" value="{{ $project->id }}">
 
     <div class="h-screen px-6 lg:px-32 py-6">
-        <div class="bg-white rounded p-6">
+        <div class="bg-white rounded p-6 dark:bg-gray-800 dark:text-white">
 
             @php
                 // Si l'utilisateur est le créateur alors il a accès à tous les paramètres

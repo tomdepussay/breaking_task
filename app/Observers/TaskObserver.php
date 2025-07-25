@@ -30,7 +30,6 @@ class TaskObserver
 
     protected function logDetailed(Task $task, string $actionType)
     {
-        // Relations chargées (lazy loading si nécessaire)
         $user = $task->createdBy()->first();
         $project = $task->project()->first();
         $priority = $task->priority()->first();
@@ -46,7 +45,7 @@ class TaskObserver
         $columnName = $column->name ?? 'non définie';
         $categoryName = $category->name ?? 'non définie';
 
-        $entry = '[' . now() . '] '
+        $entry = '[' . now()->timezone('Europe/Paris')->format('Y-m-d H:i:s') . '] '
             . "Tâche #{$task->id} ({$task->name}) {$actionType} par {$nomComplet} | "
             . "Projet : {$projectName} | "
             . "Statut : {$columnName} | "
